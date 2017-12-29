@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { DatePicker } from 'antd'
+import moment from 'moment'
 import './index.css';
+import 'antd/dist/antd.css';
+const {RangePicker} = DatePicker
+
 //单元格
 class Square extends React.Component {
     // constructor() {
@@ -23,16 +28,17 @@ class Board extends React.Component {
         super();
         this.state = {
             squares: Array(9).fill(null),
-            Xnext:true
+            Xnext: true
         }
     }
-    handleClick(i){
-        const squares=this.state.squares.slice();
-        squares[i]=this.state.Xnext ? 'x' : 'o';
-        this.setState({squares:squares,Xnext:!this.state.Xnext})
+    handleClick(i) {
+        console.log(DatePicker);
+        const squares = this.state.squares.slice();
+        squares[i] = this.state.Xnext ? 'x' : 'o';
+        this.setState({ squares: squares, Xnext: !this.state.Xnext })
     }
     renderSquare(i) {
-        return <Square value={this.state.squares[i]} cb={()=>this.handleClick(i)}/>;
+        return <Square value={this.state.squares[i]} cb={() => this.handleClick(i)} />;
     }
     render() {
         const status = `Next player: ${this.state.Xnext ? 'x' : 'o'}`;
@@ -55,6 +61,11 @@ class Board extends React.Component {
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
                 </div>
+                <span>开始时间</span>
+                <DatePicker defaultValue={moment('2017-12-19', 'YYYY-MM-DD')} />
+                <span>结束时间</span>
+                <DatePicker defaultValue={moment('2017-12-29', 'YYYY-MM-DD')} />
+                <RangePicker/>
             </div>
         );
     }
