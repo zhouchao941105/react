@@ -21,6 +21,7 @@
     "babel-plugin-import": "^1.6.3",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",
+    "react-app-rewire-less": "^2.1.0",
     "react-app-rewired": "^1.4.0",
     "webpack": "^3.5.5"
   }

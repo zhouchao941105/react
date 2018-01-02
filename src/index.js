@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DatePicker } from 'antd'
+import { DatePicker,Button } from 'antd'
 import moment from 'moment'
 import './index.css';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.less';
 const {RangePicker} = DatePicker
 
 //单元格
@@ -81,6 +81,7 @@ class Game extends React.Component {
                 <div className="game-info">
                     <div>{/* status */}</div>
                     <ol>{/* TODO */}</ol>
+                    <Button >submit</Button>
                 </div>
             </div>
         );
