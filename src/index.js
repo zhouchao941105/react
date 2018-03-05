@@ -81,7 +81,7 @@ class Game extends React.Component {
                 <div className="game-info">
                     <div>{/* status */}</div>
                     <ol>{/* TODO */}</ol>
-                    <Button >submit</Button>
+                    <Button >submit?</Button>
                 </div>
             </div>
         );
