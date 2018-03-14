@@ -1,11 +1,13 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DatePicker,Button,From } from 'antd'
+import { DatePicker, Button, From, Layout, Icon, Menu } from 'antd'
 import moment from 'moment'
 import './index.css';
 // import 'antd/dist/antd.less';
-const {RangePicker} = DatePicker
-
+const { RangePicker } = DatePicker
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 //单元格
 class Square extends React.Component {
     // constructor() {
@@ -65,7 +67,7 @@ class Board extends React.Component {
                 <DatePicker defaultValue={moment('2017-12-19', 'YYYY-MM-DD')} />
                 <span>结束时间</span>
                 <DatePicker defaultValue={moment('2017-12-29', 'YYYY-MM-DD')} />
-                <RangePicker/>
+                <RangePicker />
             </div>
         );
     }
@@ -87,10 +89,43 @@ class Game extends React.Component {
         );
     }
 }
+class Chat extends React.Component {
+    render() {
+        return (
+            <Layout>
+                <Sider>
+                    <Menu theme='dark' mode='inline'>
+                        <Menu.Item key='1'>
+                            <Icon type="pie-chart" />
+                            <span>Option 1</span>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <Icon type="desktop" />
+                            <span>Option 2</span>
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+                <Layout>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                        chat online
+                </Header>
+                    <Content>
+                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                            Bill is a cat.
+            </div>
+                    </Content>
+                    <Footer style={{ textAlign: 'center' }}>
+                        Ant Design
+                </Footer>
+                </Layout>
+            </Layout>
+        )
+    }
+}
 
 // ========================================
 
 ReactDOM.render(
-    <Game />,
+    <Chat />,
     document.getElementById('root')
 );
