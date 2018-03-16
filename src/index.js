@@ -110,7 +110,7 @@ class Chat extends React.Component {
                         chat online
                 </Header>
                     <Content>
-                        <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                        <div style={{ padding: 24, background: '#ffd', minHeight: 360 }}>
                             Bill is a cat.
             </div>
                     </Content>
