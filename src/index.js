@@ -115,7 +115,7 @@ class Chat extends React.Component {
             </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                        Ant Design
+                        Ant Design 的
                 </Footer>
                 </Layout>
             </Layout>
