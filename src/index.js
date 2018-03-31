@@ -27,7 +27,7 @@ class Chat extends React.Component {
                             
                         <Menu.Item key="2">
                             <Icon type="desktop" />
-                            <span>考勤</span>
+                            <span>考勤2</span>
                         </Menu.Item>
                     </Menu>
                 </Sider>
