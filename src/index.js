@@ -16,7 +16,7 @@ class Chat extends React.Component {
                     <Menu theme='dark' mode='inline'>
                         <Menu.Item key='1'>
                         <Icon type="pie-chart" />
-                            <span>学生</span>
+                            <span>学生2</span>
                         </Menu.Item>
                         
                         <SubMenu title='hehe'>
