@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { DatePicker, Button, From, Layout, Icon, Menu } from 'antd'
 import moment from 'moment'
 import './index.css';
+import axios from 'axios'
 // import 'antd/dist/antd.less';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
