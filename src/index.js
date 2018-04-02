@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { DatePicker, Button, From, Layout, Icon, Menu } from 'antd'
 import moment from 'moment'
 import './index.css';
-import axios from 'axios'
 // import 'antd/dist/antd.less';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
@@ -17,18 +16,18 @@ class Chat extends React.Component {
                     <Menu theme='dark' mode='inline'>
                         <Menu.Item key='1'>
                         <Icon type="pie-chart" />
-                            <span>学生2</span>
+                            <span>学生</span>
                         </Menu.Item>
                         
-                        <SubMenu title='hehe'>
+                        {/* <SubMenu title='hehe'>
                             <Menu.Item>
                                 haha
                             </Menu.Item>
-                        </SubMenu>
+                        </SubMenu> */}
                             
                         <Menu.Item key="2">
                             <Icon type="desktop" />
-                            <span>考勤2</span>
+                            <span>考勤</span>
                         </Menu.Item>
                     </Menu>
                 </Sider>
