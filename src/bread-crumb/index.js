@@ -1,7 +1,8 @@
 import React from 'react'
-import { Router, Route, Link, hashHistory } from 'react-router';
-import { Breadcrumb, Button } from 'antd';
+import { Router, Route, Link, hashHistory, withRouter } from 'react-router';
+import { Breadcrumb, Button, Modal } from 'antd';
 import './inde.css'
+const confirm = Modal.confirm;
 const Apps = ({ children }) => (
     <div>
         {/* <Button><Link to="/apps/1">go to app1</Link></Button> */}
@@ -47,14 +48,42 @@ const Detail = ({ params }) => {
         </div>
     )
 }
-const Edit = ({ params }) => (
-    <div>
-        <Button>
-            <Link to={`/apps/${params.id}`} >back to application {params.id}</Link>
-        </Button>
-        <p>edit area for {params.id}</p>
-    </div>
-)
+const Edit = withRouter(class extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    // mixins: [Lifecycle],
+    componentDidMount() {
+        this.props.router.setRouteLeaveHook(
+            this.props.route, this.routerWillLeave
+        )
+    }
+    routerWillLeave() {
+        let key = confirm({
+            title: '确定离开？',
+            onOk: () => {
+                console.log('leave')
+                return true;
+            },
+            onCancel: () => {
+                console.log('stay')
+                return false
+            },
+            okText: '确定',
+            cancelText: '取消'
+        })
+
+    }
+    render() {
+        return (
+            <div>
+                <Button>
+                    <Link to={`/apps/${this.props.params.id}`} >back to application {this.props.params.id}</Link>
+                </Button>
+                <p>edit area for {this.props.params.id}</p>
+            </div>)
+    }
+})
 const Home = ({ routes, params, children }) => (
     <div className="demo">
         {/* <div className="demo-nav">
@@ -67,6 +96,19 @@ const Home = ({ routes, params, children }) => (
     </div>
 );
 class Output extends React.Component {
+    // leave = (a, b) => {
+    //     return confirm({
+    //         title: '确定离开？',
+    //         onOk: () => {
+    //             console.log('leave')
+    //         },
+    //         onCancel: () => {
+    //             console.log('stay')
+    //         },
+    //         okText: '确定',
+    //         cancelText: '取消'
+    //     })
+    // }
     render() {
         return (
             <Router history={hashHistory} >
