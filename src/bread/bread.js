@@ -2,21 +2,50 @@ import React from 'react'
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 import './bread.css'
-// const Apps = () => (
-// 	<ul className="app-list">
-// 		<li>
-// 			<Link to="/apps/1">Application1</Link>：<Link to="/apps/1/detail">Detail</Link>
-// 		</li>
-// 		<li>
-// 			<Link to="/apps/2">Application</Link>：<Link to="/apps/2/detail">Detail</Link>
-// 		</li>
-// 	</ul>
+class Appsa extends React.Component {
+	render() {
+		return (
+			<div>
+				<ul className="app-list">
+					<li>
+						<Route path="/apps/1">
+							<Link to="/apps/1/detail">Detail</Link>
+						</Route>
+					</li>
+
+				</ul>
+				<div>
+					{/* {this.props.children} */}
+					<Route path="/apps/1/detail" render={() => <span>it's detail1</span>} />
+
+				</div>
+			</div>)
+	}
+}
+// const Appsa = React.createClass({
+
+// }
 // );
+const Appsb = () => (
+	<div>
+		<ul className="app-list">
+
+			<li>
+				<Link to="/apps/2/detail">Detail</Link>
+			</li>
+		</ul>
+		<div>
+			{/* {this.props.children} */}
+			<Route path="/apps/2/detail" render={() => <span>it's detail2</span>} />
+
+		</div>
+	</div>
+);
 
 const breadcrumbNameMap = {
 	'/apps': 'Application List',
-	'/apps/1': 'Application1',
-	'/apps/2': 'Application2',
+	'/apps/1': '1',
+	'/apps/2': '2',
 	'/apps/1/detail': 'Detail',
 	'/apps/2/detail': 'Detail',
 };
@@ -48,7 +77,9 @@ const Home = withRouter((props) => {
 				{breadcrumbItems}
 			</Breadcrumb>
 			<Switch>
-				{/* <Route path="/apps" component={Apps} /> */}
+				<Route path="/apps/1" component={Appsa} >
+				</Route>
+				<Route path="/apps/2" component={Appsb} />
 				<Route render={() => <span>Home Page Content</span>} />
 			</Switch>
 
@@ -56,13 +87,13 @@ const Home = withRouter((props) => {
 	);
 });
 export default Home
-export let Apps = () => (
-	<ul className="app-list">
-		<li>
-			<Link to="/apps/1">Application1</Link>：<Link to="/apps/1/detail">Detail</Link>
-		</li>
-		<li>
-			<Link to="/apps/2">Application2</Link>：<Link to="/apps/2/detail">Detail</Link>
-		</li>
-	</ul>
-)
+// export let Apps = () => (
+// 	<ul className="app-list">
+// 		<li>
+// 			<Link to="/apps/1">Application1</Link>：<Link to="/apps/1/detail">Detail</Link>
+// 		</li>
+// 		<li>
+// 			<Link to="/apps/2">Application2</Link>：<Link to="/apps/2/detail">Detail</Link>
+// 		</li>
+// 	</ul>
+// )

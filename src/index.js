@@ -9,8 +9,31 @@ import './index.css';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-import Home, { Apps } from './bread/bread'
+import { Output } from './bread-crumb'
+// import Home from './bread/bread'
 class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            current: window.location.hash.split('/')[2] || '0'
+        }
+    }
+    componentDidMount() {
+        window.addEventListener('hashchange', () => {
+            let oldHash, newHash = window.location.hash.split('/')[2]
+            if (newHash !== oldHash) {
+                this.setState({
+                    current: newHash
+                })
+                oldHash = newHash
+            }
+            if (window.location.hash.split('/').length < 3) {
+                this.setState({
+                    current: '0'
+                })
+            }
+        })
+    }
     // App = () => (
     //     <ul>
     //         <li>
@@ -23,21 +46,69 @@ class App extends React.Component {
     //         </li>
     //     </ul>
     // )
+    handleClick = (e) => {
+        this.setState({ current: e.key })
+    }
     render() {
         return (
             <Layout>
                 <Sider>
 
-                    <Router>
-                        <Apps></Apps>
-                    </Router>
-                    {/* <Menu theme='dark' mode='inline'>
-                        <Menu.Item key='1'>
-                            <Icon type="pie-chart" />
+                    {/* <Router>
+                        <ul className="app-list">
+                            <li>
+                                <Link to="/apps/1">Application1</Link>：<Link to="/apps/1/detail">Detail</Link>
+                            </li>
+                            <li>
+                                <Link to="/apps/2">Application2</Link>：<Link to="/apps/2/detail">Detail</Link>
+                            </li>
+                        </ul>
+                    </Router> */}
+                    <Menu mode='inline' onClick={this.handleClick} selectedKeys={[this.state.current]} style={{ height: '600px' }}>
+                        <Menu.Item key='0'>
+                            <Icon type="home" />
                             <Router>
-                                <Link to="/" style={{ display: 'inline-block' }}>Home</Link>
+                                <Route>
+                                    <Link to="/apps" style={{ display: 'inline-block' }}>Application List</Link>
+                                </Route>
                             </Router>
-                        </Menu.Item>*/}
+                        </Menu.Item>
+                        <Menu.Item key='1'>
+                            <Icon type="apple" />
+                            <Router>
+                                <Route>
+                                    <Link to="/apps/1" style={{ display: 'inline-block' }}>Application1</Link>
+                                </Route>
+                            </Router>
+                        </Menu.Item>
+                        {/* <Menu.Item>
+                            <Icon type="desktop" />
+
+                            <Router>
+                                <Route>
+                                    <Link to="/apps/1/detail" style={{ display: 'inline-block' }}>Detail</Link>
+                                </Route>
+                            </Router>
+                        </Menu.Item> */}
+                        <Menu.Item key="2">
+                            <Icon type="google" />
+                            <Router>
+                                <Route>
+                                    <Link to="/apps/2" style={{ display: 'inline-block' }}>Application2</Link>
+                                </Route>
+                            </Router>
+                        </Menu.Item>
+
+                        {/* <Menu.Item>
+                            <Icon type="desktop" />
+
+                            <Router>
+                                <Route>
+                                    <Link to="/apps/2/detail" style={{ display: 'inline-block' }}>Detail</Link>
+                                </Route>
+                            </Router>
+                        </Menu.Item> */}
+                    </Menu>
 
                     {/* <SubMenu title='hehe'>
                             <Menu.Item>
@@ -53,11 +124,12 @@ class App extends React.Component {
                     </Menu> */}
                 </Sider>
                 <Layout>
-                    <Router>
+                    <Output></Output>
+                    {/* <Router>
                         <Route>
                             <Home></Home>
                         </Route>
-                    </Router>
+                    </Router> */}
                     {/* <Header style={{ background: '#fff', padding: 0, color: 'pink' }}>
                         App online
                     </Header>
@@ -70,7 +142,7 @@ class App extends React.Component {
                         SIS
                     </Footer> */}
                 </Layout>
-            </Layout>
+            </Layout >
         )
     }
 }
