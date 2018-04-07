@@ -48,29 +48,60 @@ const Detail = ({ params }) => {
         </div>
     )
 }
+function setAsyncRouteLeaveHook(router, route, hook) {
+    let withinHook = false
+    let finalResult = undefined
+    let finalResultSet = false
+    router.setRouteLeaveHook(route, nextLocation => {
+        withinHook = true
+        if (!finalResultSet) {
+            hook(nextLocation).then(result => {
+                finalResult = result
+                finalResultSet = true
+                if (!withinHook && nextLocation) {
+                    // Re-schedule the navigation
+                    router.push(nextLocation)
+                }
+            })
+        }
+        let result = finalResultSet ? finalResult : false
+        withinHook = false
+        finalResult = undefined
+        finalResultSet = false
+        return result
+    })
+}
 const Edit = withRouter(class extends React.Component {
     constructor(props) {
         super(props)
     }
     // mixins: [Lifecycle],
     componentDidMount() {
+        // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
         this.props.router.setRouteLeaveHook(
             this.props.route, this.routerWillLeave
         )
     }
     routerWillLeave() {
-        let key = confirm({
-            title: '确定离开？',
-            onOk: () => {
-                console.log('leave')
-                return true;
-            },
-            onCancel: () => {
-                console.log('stay')
-                return false
-            },
-            okText: '确定',
-            cancelText: '取消'
+        // return '确定离开？'
+        return new Promise((res, rej) => {
+            confirm({
+                title: '确定离开？',
+                onOk: () => {
+                    console.log('leave')
+                    // return new Promise((res) => {
+                    //     setTimeout(() => { res() }, 3000)
+                    // });
+                    res()
+                },
+                onCancel: () => {
+                    console.log('stay')
+                    // return false
+                    rej()
+                },
+                okText: '确定',
+                cancelText: '取消'
+            })
         })
 
     }
