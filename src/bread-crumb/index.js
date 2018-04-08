@@ -77,10 +77,10 @@ const Edit = withRouter(class extends React.Component {
     }
     // mixins: [Lifecycle],
     componentDidMount() {
-        // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
-        this.props.router.setRouteLeaveHook(
-            this.props.route, this.routerWillLeave
-        )
+        setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
+        // this.props.router.setRouteLeaveHook(
+        // this.props.route, this.routerWillLeave
+        // )
     }
     routerWillLeave() {
         // return '确定离开？'
