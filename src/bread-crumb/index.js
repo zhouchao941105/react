@@ -11,6 +11,12 @@ const Apps = ({ children }) => (
     </div>
 
 );
+const path = {
+    pathname: '/apps/1',
+    state: {
+        current: 0
+    }
+}
 const App = ({ params, children }) => {
     return (
         <div>
@@ -123,6 +129,9 @@ const Home = ({ routes, params, children }) => (
         </div> */}
         <Breadcrumb routes={routes} params={params} />
         {children || 'Home Page'}
+        <Button>
+            <Link to={path}></Link>
+        </Button>
         {/* <Alert style={{ margin: '16px 0' }} message="Click the navigation above to switch:" /> */}
     </div>
 );

@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom'
+import { HashRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
+import { hashHistory, Router } from 'react-router'
 import { DatePicker, Button, From, Layout, Icon, Menu, Breadcrumb } from 'antd'
 import moment from 'moment'
 import './index.css';
@@ -10,6 +11,7 @@ const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 import { Output } from './bread-crumb'
+import { menu } from './menu-list'
 // import Home from './bread/bread'
 class App extends React.Component {
     constructor() {
@@ -34,18 +36,6 @@ class App extends React.Component {
             }
         })
     }
-    // App = () => (
-    //     <ul>
-    //         <li>
-    //             <Link to="">x</Link>
-    //             <Link to="">y</Link>
-    //         </li>
-    //         <li>
-    //             <Link to="">z</Link>
-    //             <Link to="">r</Link>
-    //         </li>
-    //     </ul>
-    // )
     handleClick = (e) => {
         this.setState({ current: e.key })
     }
@@ -53,7 +43,17 @@ class App extends React.Component {
         return (
             <Layout>
                 <Sider>
+                    <Router history={hashHistory}>
+                        <Switch>
+                            <Route path="/" component={menu}>
 
+                            </Route>
+                            <Route path="/apps/1" component={menu} >
+                            </Route>
+                        </Switch>
+
+                    </Router>
+                    {/* <menu current=></menu> */}
                     {/* <Router>
                         <ul className="app-list">
                             <li>
@@ -64,7 +64,7 @@ class App extends React.Component {
                             </li>
                         </ul>
                     </Router> */}
-                    <Menu mode='inline' onClick={this.handleClick} selectedKeys={[this.state.current]} style={{ height: '600px' }}>
+                    {/* <Menu mode='inline' onClick={this.handleClick} selectedKeys={[this.state.current]} style={{ height: '600px' }}>
                         <Menu.Item key='0'>
                             <Icon type="home" />
                             <Router>
@@ -80,8 +80,8 @@ class App extends React.Component {
                                     <Link to="/apps/1" style={{ display: 'inline-block' }}>Application1</Link>
                                 </Route>
                             </Router>
-                        </Menu.Item>
-                        {/* <Menu.Item>
+                        </Menu.Item> */}
+                    {/* <Menu.Item>
                             <Icon type="desktop" />
 
                             <Router>
@@ -90,16 +90,16 @@ class App extends React.Component {
                                 </Route>
                             </Router>
                         </Menu.Item> */}
-                        <Menu.Item key="2">
+                    {/* <Menu.Item key="2">
                             <Icon type="google" />
                             <Router>
                                 <Route>
                                     <Link to="/apps/2" style={{ display: 'inline-block' }}>Application2</Link>
                                 </Route>
                             </Router>
-                        </Menu.Item>
+                        </Menu.Item> */}
 
-                        {/* <Menu.Item>
+                    {/* <Menu.Item>
                             <Icon type="desktop" />
 
                             <Router>
@@ -108,7 +108,7 @@ class App extends React.Component {
                                 </Route>
                             </Router>
                         </Menu.Item> */}
-                    </Menu>
+                    {/* </Menu> */}
 
                     {/* <SubMenu title='hehe'>
                             <Menu.Item>
