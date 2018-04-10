@@ -7,7 +7,7 @@ class menu extends React.Component {
         return (
 
 
-            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={['2']}>
+            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={['1']}>
                 <Menu.Item key='0'>
                     <Icon type="home" />
                     <Router history={hashHistory}>
