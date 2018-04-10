@@ -78,9 +78,6 @@ function setAsyncRouteLeaveHook(router, route, hook) {
     })
 }
 const Edit = withRouter(class extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     // mixins: [Lifecycle],
     componentDidMount() {
         setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
@@ -129,9 +126,6 @@ const Home = ({ routes, params, children }) => (
         </div> */}
         <Breadcrumb routes={routes} params={params} />
         {children || 'Home Page'}
-        <Button>
-            <Link to={path}></Link>
-        </Button>
         {/* <Alert style={{ margin: '16px 0' }} message="Click the navigation above to switch:" /> */}
     </div>
 );

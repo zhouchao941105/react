@@ -1,27 +1,21 @@
 import React from 'react'
 import { Menu, Icon } from 'antd';
-import { Link, Router, Route, hashHistory } from 'react-router'
-class menu extends React.Component {
+import { Link } from 'react-router'
+
+export class MenuList extends React.Component {
     render() {
-        console.log(this);
         return (
-
-
             <Menu mode='inline' style={{ height: '600px' }} selectedKeys={['1']}>
                 <Menu.Item key='0'>
                     <Icon type="home" />
-                    <Router history={hashHistory}>
-                        <Route>
-                            <Link to={{
-                                pathname: 'apps/1',
-                                state: 'haha'
-                            }} style={{ display: 'inline-block' }}>Application List</Link>
-                        </Route>
-                    </Router>
+                    <Link to={{
+                        pathname: 'apps',
+                        state: 'haha'
+                    }} style={{ display: 'inline-block' }}>Application List</Link>
                 </Menu.Item>
                 <Menu.Item key='1'>
                     <Icon type="apple" />
-                    Application1
+                    <Link to="/apps/1" style={{ display: 'inline-block' }}>Application1</Link>
                 </Menu.Item>
                 {/* <Menu.Item>
                             <Icon type="desktop" />
@@ -34,10 +28,10 @@ class menu extends React.Component {
                         </Menu.Item> */}
                 <Menu.Item key="2">
                     <Icon type="google" />
-                    Application2
+                    <Link to="/apps/2" style={{ display: 'inline-block' }}>Application2</Link>
                 </Menu.Item>
             </Menu>
+
         )
     }
 }
-export { menu }
