@@ -47,6 +47,9 @@ const Detail = ({ params }) => {
             <Button>
                 <Link to={`/${params.name}/List`} >back to application {params.name}</Link>
             </Button>
+            <Button>
+                <Link to={`/google/List`} >back to application google</Link>
+            </Button>
             <p>it's detail for {params.name}</p>
         </div>
     )
@@ -115,18 +118,20 @@ const Edit = withRouter(class extends React.Component {
             </div>)
     }
 })
-const Home = ({ routes, params, children }) => (
-    <div className="demo">
-        {/* <div className="demo-nav">
+const Home = ({ routes, params, children }) => {
+    return (
+        <div className="demo">
+            {/* <div className="demo-nav">
             <Link to="/">Home</Link>
             <Link to="/apps">Application List</Link>
         </div> */}
-        <Breadcrumb routes={routes} params={params} />
-        {/* {children || 'Home Page'} */}
-        {/* <App></App> */}
-        {/* <Alert style={{ margin: '16px 0' }} message="Click the navigation above to switch:" /> */}
-    </div>
-);
+            <Breadcrumb routes={routes} params={params} />
+            {children || 'Home Page'}
+            {/* <App></App> */}
+            {/* <Alert style={{ margin: '16px 0' }} message="Click the navigation above to switch:" /> */}
+        </div>
+    )
+};
 class Output extends React.Component {
     // leave = (a, b) => {
     //     return confirm({
@@ -147,7 +152,7 @@ class Output extends React.Component {
         )
     }
 }
-export { List, DefaultList, Detail, Edit }
+export { List, DefaultList, Detail, Edit, Home }
 // ReactDOM.render(
 
 //     , mountNode);
