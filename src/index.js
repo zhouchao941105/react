@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
-import { hashHistory, Router } from 'react-router'
+import { hashHistory, Router, IndexRoute } from 'react-router'
 import { DatePicker, Button, From, Layout, Icon, Menu, Breadcrumb } from 'antd'
 import moment from 'moment'
 import './index.css';
@@ -10,10 +10,11 @@ import './index.css';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-import { Output } from './bread-crumb'
+import { List, DefaultList, Edit, Detail } from './bread-crumb'
 import { MenuList } from './menu-list'
 // import Home from './bread/bread'
-class another extends React.Component {
+import Welcome from './welcome'
+class Basic extends React.Component {
     render() {
         return (
             <Layout>
@@ -21,7 +22,7 @@ class another extends React.Component {
                     <MenuList></MenuList>
                 </Sider>
                 <Layout>
-                    {this.props.children}
+                    {this.props.children || 'hahah'}
                     {/* <Output></Output> */}
                 </Layout>
             </Layout>
@@ -29,38 +30,21 @@ class another extends React.Component {
     }
 }
 class App extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            current: window.location.hash.split('/')[2] || '0'
-        }
-    }
-    // componentDidMount() {
-    //     window.addEventListener('hashchange', () => {
-    //         let oldHash, newHash = window.location.hash.split('/')[2]
-    //         if (newHash !== oldHash) {
-    //             this.setState({
-    //                 current: newHash
-    //             })
-    //             oldHash = newHash
-    //         }
-    //         if (window.location.hash.split('/').length < 3) {
-    //             this.setState({
-    //                 current: '0'
-    //             })
-    //         }
-    //     })
-    // }
-    handleClick = (e) => {
-        this.setState({ current: e.key })
-    }
     render() {
         return (
             <Router history={hashHistory}>
-                <Route path='/' component={another}>
-                    <Route path='apps' component={Output}>
-                        {/* <Route path=":id" component={}></Route> */}
+                <Route path='/' component={Basic}>
+                    <Route path="home" component={Welcome}></Route>
+                    <Route path=":name" >
+                        <IndexRoute component={DefaultList}></IndexRoute>
+                        <Route path="List" component={List}></Route>
+                        <Route path='Detail' component={Detail}></Route>
+                        <Route path='Edit' component={Edit}></Route>
                     </Route>
+                    {/* <Route path=':name/List' component={List}></Route> */}
+                    {/* 用:name来指代apple和google */}
+                    {/* <Route path="google" component={List}></Route> */}
+                    {/* </Route> */}
                 </Route>
             </Router>
         )

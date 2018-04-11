@@ -11,46 +11,43 @@ const Apps = ({ children }) => (
     </div>
 
 );
-const path = {
-    pathname: '/apps/1',
-    state: {
-        current: 0
-    }
-}
-const App = ({ params, children }) => {
+// const path = {
+//     pathname: '/apps/1',
+//     state: {
+//         current: 0
+//     }
+// }
+const List = ({ params, children }) => {
     return (
         <div>
             <ul className="app-list">
                 <li>
                     <Button>
-                        <Link to={`/apps/${params.id}/detail`}>Detail</Link>
+                        <Link to={`/${params.name}/detail`}>Detail</Link>
                     </Button>
                     <Button>
-                        <Link to={`/apps/${params.id}/edit`}>Edit</Link>
+                        <Link to={`/${params.name}/edit`}>Edit</Link>
                     </Button>
                 </li>
-                {/* <li>
-                    <Button>
-                        <Link to="/apps/2/detail">Detail for Application2</Link>
-                    </Button>
-                    <Button>
-                        <Link to="/apps/2/edit">Edit Application2</Link>
-                    </Button>
-                </li> */}
             </ul>
-            <p>it's application{params.id}</p>
+            <p>it's application <span style={{ 'fontWeight': 'bold' }}>{params.name}</span></p>
 
             {/* {children} */}
-        </div>
+        </div >
+    )
+}
+const DefaultList = () => {
+    return (
+        <div>It's list area</div>
     )
 }
 const Detail = ({ params }) => {
     return (
         <div>
             <Button>
-                <Link to={`/apps/${params.id}`} >back to application {params.id}</Link>
+                <Link to={`/${params.name}/List`} >back to application {params.name}</Link>
             </Button>
-            <p>it's detail for {params.id}</p>
+            <p>it's detail for {params.name}</p>
         </div>
     )
 }
@@ -105,16 +102,16 @@ const Edit = withRouter(class extends React.Component {
                 okText: '确定',
                 cancelText: '取消'
             })
-        })
+        }).then()
 
     }
     render() {
         return (
             <div>
                 <Button>
-                    <Link to={`/apps/${this.props.params.id}`} >back to application {this.props.params.id}</Link>
+                    <Link to={`/${this.props.params.name}/List`} >back to application {this.props.params.name}</Link>
                 </Button>
-                <p>edit area for {this.props.params.id}</p>
+                <p>edit area for {this.props.params.name}</p>
             </div>)
     }
 })
@@ -125,7 +122,8 @@ const Home = ({ routes, params, children }) => (
             <Link to="/apps">Application List</Link>
         </div> */}
         <Breadcrumb routes={routes} params={params} />
-        {children || 'Home Page'}
+        {/* {children || 'Home Page'} */}
+        {/* <App></App> */}
         {/* <Alert style={{ margin: '16px 0' }} message="Click the navigation above to switch:" /> */}
     </div>
 );
@@ -145,19 +143,11 @@ class Output extends React.Component {
     // }
     render() {
         return (
-            <Router history={hashHistory} >
-                <Route name="home" breadcrumbName="Home" path="/" component={Home}>
-                    <Route name="apps" breadcrumbName="Application List" path="apps" component={Apps}>
-                        <Route name="app" breadcrumbName="Application:id" path=":id" component={App} />
-                        <Route name="detail" breadcrumbName="Detail" path=":id/detail" component={Detail} />
-                        <Route name='edit' breadcrumbName='Edit' path=":id/edit" component={Edit} />
-                    </Route>
-                </Route>
-            </Router>
+            {/* <Route name="apps" breadcrumbName="Application List" path="apps" component={Apps}> */ }
         )
     }
 }
-export { Output }
+export { List, DefaultList, Detail, Edit }
 // ReactDOM.render(
 
 //     , mountNode);

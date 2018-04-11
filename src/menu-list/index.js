@@ -3,32 +3,55 @@ import { Menu, Icon } from 'antd';
 import { Link } from 'react-router'
 
 export class MenuList extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            current: 'home'
+        }
+    }
+    componentDidMount() {
+        window.addEventListener('hashchange', () => {
+            let oldHash, newHash = window.location.hash.split('/')[1]
+            if (newHash !== oldHash) {
+                this.setState({
+                    current: newHash
+                })
+                oldHash = newHash
+            }
+            // if (window.location.hash.split('/').length < 2) {
+            //     this.setState({
+            //         current: '0'
+            //     })
+            // }
+        })
+    }
+    handleClick = e => {
+        this.refs.menu && this.setState({
+            current: e.key
+        })
+    }
     render() {
         return (
-            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={['1']}>
-                <Menu.Item key='0'>
+            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={[this.state.current]} onClick={this.handleClick} ref='menu'>
+                <Menu.Item key='home'>
                     <Icon type="home" />
-                    <Link to={{
-                        pathname: 'apps',
-                        state: 'haha'
-                    }} style={{ display: 'inline-block' }}>Application List</Link>
+                    <Link to='/home' style={{ display: 'inline-block' }}>Home</Link>
                 </Menu.Item>
-                <Menu.Item key='1'>
+                <Menu.Item key='apple'>
                     <Icon type="apple" />
-                    <Link to="/apps/1" style={{ display: 'inline-block' }}>Application1</Link>
+                    <Link to="/apple/List" style={{ display: 'inline-block' }}>Apple</Link>
                 </Menu.Item>
                 {/* <Menu.Item>
                             <Icon type="desktop" />
-
                             <Router>
                                 <Route>
                                     <Link to="/apps/1/detail" style={{ display: 'inline-block' }}>Detail</Link>
                                 </Route>
                             </Router>
                         </Menu.Item> */}
-                <Menu.Item key="2">
+                <Menu.Item key="google">
                     <Icon type="google" />
-                    <Link to="/apps/2" style={{ display: 'inline-block' }}>Application2</Link>
+                    <Link to="/google/List" style={{ display: 'inline-block' }}>Google</Link>
                 </Menu.Item>
             </Menu>
 
