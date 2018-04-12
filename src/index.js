@@ -37,7 +37,7 @@ class App extends React.Component {
                     <IndexRoute component={Welcome}></IndexRoute>
                     <Route path='home' component={Welcome}></Route>
                     <Route path=":name" breadcrumbName=":name" component={Home} >
-                        <IndexRoute component={DefaultList}></IndexRoute>
+                        <IndexRoute breadcrumbName="List" component={List}></IndexRoute>
                         <Route path="List" breadcrumbName="List" component={List}></Route>
                         <Route path='Detail' breadcrumbName="Detail" component={Detail}></Route>
                         <Route path='Edit' breadcrumbName="Edit" component={Edit}></Route>
