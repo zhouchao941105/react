@@ -30,7 +30,7 @@ const List = ({ params, children }) => {
                     </Button>
                 </li>
             </ul>
-            <p>it's application <span style={{ 'fontWeight': 'bold' }}>{params.name}</span></p>
+            <p>it's application <span style={{ fontWeight: 'bold' }} >{params.name}</span></p>
 
             {/* {children} */}
         </div >
@@ -50,7 +50,7 @@ const Detail = ({ params }) => {
             <Button>
                 <Link to={`/google/List`} >back to application google</Link>
             </Button>
-            <p>it's detail for {params.name}</p>
+            <p>it's <strong>Detail</strong> for {params.name}</p>
         </div>
     )
 }
@@ -80,22 +80,26 @@ function setAsyncRouteLeaveHook(router, route, hook) {
 const Edit = withRouter(class extends React.Component {
     // mixins: [Lifecycle],
     componentDidMount() {
-        setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
-        // this.props.router.setRouteLeaveHook(
-        // this.props.route, this.routerWillLeave
-        // )
+        // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
+        this.props.router.setRouteLeaveHook(
+            this.props.route, this.routerWillLeave
+        )
     }
     routerWillLeave() {
+        //todo: hash
         // return '确定离开？'
         return new Promise((res, rej) => {
             confirm({
                 title: '确定离开？',
                 onOk: () => {
                     console.log('leave')
-                    // return new Promise((res) => {
-                    //     setTimeout(() => { res() }, 3000)
-                    // });
-                    res()
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve();
+                            res();
+                        }, 3000)
+                    });
+                    // res()
                 },
                 onCancel: () => {
                     console.log('stay')
@@ -105,7 +109,7 @@ const Edit = withRouter(class extends React.Component {
                 okText: '确定',
                 cancelText: '取消'
             })
-        }).then()
+        })
 
     }
     render() {
@@ -114,11 +118,12 @@ const Edit = withRouter(class extends React.Component {
                 <Button>
                     <Link to={`/${this.props.params.name}/List`} >back to application {this.props.params.name}</Link>
                 </Button>
-                <p>edit area for {this.props.params.name}</p>
+                <p><strong>Edit</strong> area for {this.props.params.name}</p>
             </div>)
     }
 })
 const Home = ({ routes, params, children }) => {
+    routes.shift()
     return (
         <div className="demo">
             {/* <div className="demo-nav">

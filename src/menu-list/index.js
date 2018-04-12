@@ -10,6 +10,11 @@ export class MenuList extends React.Component {
         }
     }
     componentDidMount() {
+        window.addEventListener('load', () => {
+            this.setState({
+                current: 'home'
+            })
+        })
         window.addEventListener('hashchange', () => {
             let oldHash, newHash = window.location.hash.split('/')[1]
             if (newHash !== oldHash) {
