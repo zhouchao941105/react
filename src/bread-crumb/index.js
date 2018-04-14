@@ -1,6 +1,7 @@
 import React from 'react'
 import { Router, Route, Link, hashHistory, withRouter } from 'react-router';
 import { Breadcrumb, Button, Modal } from 'antd';
+import { TabList } from '../tab'
 import './inde.css'
 const confirm = Modal.confirm;
 const Apps = ({ children }) => (
@@ -17,6 +18,7 @@ const Apps = ({ children }) => (
 //         current: 0
 //     }
 // }
+const hh = ['x', 'y', 'z']
 const List = ({ params, children }) => {
     return (
         <div>
@@ -31,7 +33,7 @@ const List = ({ params, children }) => {
                 </li>
             </ul>
             <p>it's application <span style={{ fontWeight: 'bold' }} >{params.name}</span></p>
-
+            <TabList list={hh}></TabList>
             {/* {children} */}
         </div >
     )
