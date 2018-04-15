@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.0.3",
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "moment": "^2.20.1",
     "mongoose": "^5.0.13",
     "react": "^15.6.1",
@@ -16,6 +17,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "server": "node server/server.js",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
