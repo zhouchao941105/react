@@ -10,7 +10,7 @@ class TabList extends React.Component {
         }
     }
     getList = (key) => {
-        axios.get('http://127.0.0.1:9090/get', {
+        axios.get('/get', {
             params: {
                 type: key
             }

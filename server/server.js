@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+// var proxy = require('express-http-proxy');
 mongoose.connect('mongodb://localhost')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'error aaa'));
@@ -25,6 +26,7 @@ instance.save(function (err, ins) {
 var app = express();
 var host = '127.0.0.1';
 var port = 9090;
+
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
