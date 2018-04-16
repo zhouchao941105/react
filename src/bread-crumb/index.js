@@ -40,7 +40,7 @@ const List = ({ params, children }) => {
 }
 const DefaultList = () => {
     return (
-        <div>It's list area</div>
+        <div>It's list area </div>
     )
 }
 const Detail = ({ params }) => {
