@@ -17,7 +17,7 @@
     "socket.io": "^2.0.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "npm run server | react-app-rewired start",
     "server": "node server/server.js",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
