@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd'
-import axios from 'axios'
+import axios from '../net'
 const TabPane = Tabs.TabPane;
 class TabList extends React.Component {
     constructor(props) {
