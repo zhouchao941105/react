@@ -1,3 +1,12 @@
-# react 官方demo by create-react-app
-### react-script集成了webpack等打包工具的功能，无需配置
-用于学习react的基本知识
+## todolist
+1. [ ] 实现nav、二级菜单、面包屑
+2. 路由任意节点跳转、要有路由钩子处理事件
+3. 全局loading样式（网络请求时、前端渲染时）
+4. 要有网络层，即有前后端通信,统一拦截并处理请求
+5. 路由跳转需要保存列表状态数据
+6. 深度结合状态管理
+7. 实现xb-title
+8. 滚动加载
+9. filter
+10. 类似xb-window的穿透
+11. 设置网页的title 
