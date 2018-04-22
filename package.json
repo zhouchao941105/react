@@ -9,6 +9,7 @@
     "express-http-proxy": "^1.1.0",
     "moment": "^2.20.1",
     "mongoose": "^5.0.13",
+    "prop-types": "^15.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.7",

@@ -63,9 +63,12 @@ function reducer(state, action) {
             return {
                 loading: false
             }
+        case 'SEARCH':
+            return {
+                key: action.key,
+            }
         default: return state
     }
-    return { ...state }
 }
 const store = createStore(reducer)
 
@@ -81,3 +84,4 @@ ReactDOM.render(
 if (module.hot) {
     module.hot.accept()
 }
+export { store }

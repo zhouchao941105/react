@@ -12,25 +12,25 @@ class TabList extends React.Component {
         }
     }
     getList = (key) => {
-        this.props.dispatch({ type: 'LOADING' })
+        // this.props.dispatch({ type: 'LOADING' })
         axios.get('/get', {
             params: {
                 type: key
             }
         }).then(data => {
-            this.props.dispatch({ type: 'STOPLOADING' })
+            // this.props.dispatch({ type: 'STOPLOADING' })
 
             this.setState({
                 data: data.data.map(item => item.name),
             })
         }).catch(err => {
-            this.props.dispatch({ type: 'STOPLOADING' })
+            // this.props.dispatch({ type: 'STOPLOADING' })
         })
     }
     render() {
         return (
             <div>
-                <Spin spinning={this.props.loading} delay={1000}>
+                <Spin spinning={this.props.loading || false} delay={1000}>
                     <Tabs onChange={this.getList}>
                         {this.props.list.map((item, idx) => {
                             return (

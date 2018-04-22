@@ -1,10 +1,12 @@
 // eslint-disable-next-line
 import React from 'react'
+import { connect } from 'react-redux'
 import { Router, Route, Link, hashHistory, withRouter } from 'react-router';
-import { Breadcrumb, Button, Modal } from 'antd';
+import { Breadcrumb, Button, Modal, Input } from 'antd';
 import TabList from '../tab'
 import './index.css'
 const confirm = Modal.confirm;
+const Search = Input.Search;
 const Apps = ({ children }) => (
     <div>
         {/* <Button><Link to="/apps/1">go to app1</Link></Button> */}
@@ -20,25 +22,42 @@ const Apps = ({ children }) => (
 //     }
 // }
 const hh = ['x', 'y', 'z']
-const List = ({ params, children }) => {
-    return (
-        <div>
-            <ul className="app-list">
-                <li>
-                    <Button>
-                        <Link to={`/${params.name}/detail`}>Detail</Link>
-                    </Button>
-                    <Button>
-                        <Link to={`/${params.name}/edit`}>Edit</Link>
-                    </Button>
-                </li>
-            </ul>
-            <p>it's application <span style={{ fontWeight: 'bold' }} >{params.name}</span></p>
-            <TabList list={hh}></TabList>
-            {/* {children} */}
-        </div >
-    )
+// const List = ({ params, children, props }) => {
+class Nist extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    searchCallback = val => {
+        this.props.dispatch({ type: 'SEARCH', key: val })
+    }
+    render() {
+        return (
+            <div>
+                <ul className="app-list">
+                    <li>
+                        <Button>
+                            <Link to={`/${this.props.params.name}/detail`}>Detail</Link>
+                        </Button>
+                        <Button>
+                            <Link to={`/${this.props.params.name}/edit`}>Edit</Link>
+                        </Button>
+                    </li>
+                </ul>
+                <Search placeholder="search something" onSearch={this.searchCallback} ></Search>
+                <p>it's application <span style={{ fontWeight: 'bold' }} >{this.props.params.name}</span></p>
+                <TabList list={hh}></TabList>
+                {/* {children} */}
+            </div >
+        )
+    }
+
 }
+function stp(state = { key: '' }) {
+    return {
+        key: state.key
+    }
+}
+const List = connect(stp)(Nist);
 const DefaultList = () => {
     return (
         <div>It's list area</div>
