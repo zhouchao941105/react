@@ -1,6 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import { HashRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
 import { hashHistory, Router, IndexRoute } from 'react-router'
 import { DatePicker, Button, From, Layout, Icon, Menu, Breadcrumb } from 'antd'
@@ -51,11 +53,28 @@ class App extends React.Component {
         )
     }
 }
+function reducer(state, action) {
+    switch (action.type) {
+        case 'LOADING':
+            return {
+                loading: true
+            }
+        case 'STOPLOADING':
+            return {
+                loading: false
+            }
+        default: return state
+    }
+    return { ...state }
+}
+const store = createStore(reducer)
 
 // ========================================
 
 ReactDOM.render(
-    <App></App>
+    <Provider store={store}>
+        <App></App>
+    </Provider>
     ,
     document.getElementById('root')
 );

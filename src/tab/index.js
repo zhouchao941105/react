@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Tabs, Spin } from 'antd'
 import axios from '../net'
 const TabPane = Tabs.TabPane;
@@ -11,28 +12,25 @@ class TabList extends React.Component {
         }
     }
     getList = (key) => {
-        this.setState({
-            loading: true
-        })
+        this.props.dispatch({ type: 'LOADING' })
         axios.get('/get', {
             params: {
                 type: key
             }
         }).then(data => {
+            this.props.dispatch({ type: 'STOPLOADING' })
+
             this.setState({
                 data: data.data.map(item => item.name),
-                loading: false
             })
         }).catch(err => {
-            this.setState({
-                loading: false
-            })
+            this.props.dispatch({ type: 'STOPLOADING' })
         })
     }
     render() {
         return (
             <div>
-                <Spin spinning={this.state.loading} delay={1000} >
+                <Spin spinning={this.props.loading} delay={1000}>
                     <Tabs onChange={this.getList}>
                         {this.props.list.map((item, idx) => {
                             return (
@@ -43,8 +41,12 @@ class TabList extends React.Component {
                 </Spin>
 
             </div>
-
         )
     }
 }
-export { TabList }
+function mapStateToProps(state = { loading: false }) {
+    return {
+        loading: state.loading
+    }
+}
+export default connect(mapStateToProps)(TabList)    

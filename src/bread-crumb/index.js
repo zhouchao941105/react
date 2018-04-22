@@ -2,7 +2,7 @@
 import React from 'react'
 import { Router, Route, Link, hashHistory, withRouter } from 'react-router';
 import { Breadcrumb, Button, Modal } from 'antd';
-import { TabList } from '../tab'
+import TabList from '../tab'
 import './index.css'
 const confirm = Modal.confirm;
 const Apps = ({ children }) => (
