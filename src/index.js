@@ -2,20 +2,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import { HashRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
-import { hashHistory, Router, IndexRoute } from 'react-router'
+import { browserHistory, Router, IndexRoute } from 'react-router'
 import { DatePicker, Button, From, Layout, Icon, Menu, Breadcrumb } from 'antd'
+import store from './redux/index'
 import moment from 'moment'
 import './index.css';
 // import 'antd/dist/antd.less';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-import { List, DefaultList, Edit, Detail, Home } from './bread-crumb'
-import { MenuList } from './menu-list'
+import AppleList, { AppleContainer } from './app-components/apple/appleList'
+import AppleDetail from './app-components/apple/appleDetail'
+import AppleEdit from './app-components/apple/appleEdit'
+import GoogleList, { GoogleContainer } from './app-components/google/googleList'
+import GoogleDetail from './app-components/google/googleDetail'
+import GoogleEdit from './app-components/google/googleEdit'
+import { List, DefaultList, Edit, Home } from './base-components/bread-crumb'
+import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'
-import Welcome from './welcome'
+import Welcome from './base-components/welcome'
 class Basic extends React.Component {
     render() {
         return (
@@ -34,16 +40,23 @@ class Basic extends React.Component {
 class App extends React.Component {
     render() {
         return (
-            <Router history={hashHistory}>
+            <Router history={browserHistory}>
                 <Route path='/' component={Basic}>
                     <IndexRoute component={Welcome}></IndexRoute>
                     <Route path='home' component={Welcome}></Route>
-                    <Route path=":name" breadcrumbName=":name" component={Home} >
-                        <IndexRoute breadcrumbName="List" component={List}></IndexRoute>
-                        <Route path="List" breadcrumbName="List" component={List}></Route>
-                        <Route path='Detail' breadcrumbName="Detail" component={Detail}></Route>
-                        <Route path='Edit' breadcrumbName="Edit" component={Edit}></Route>
+                    <Route path="apple" breadcrumbName="apple" component={AppleContainer} >
+                        <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute>
+                        <Route path="List" breadcrumbName="List" component={AppleList}></Route>
+                        <Route path='Detail' breadcrumbName="Detail" component={AppleDetail}></Route>
+                        <Route path='Edit' breadcrumbName="Edit" component={AppleEdit}></Route>
                     </Route>
+                    <Route path="google" breadcrumbName="google" component={Home} >
+                        <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute>
+                        <Route path="List" breadcrumbName="List" component={GoogleList}></Route>
+                        <Route path='Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
+                        <Route path='Edit' breadcrumbName="Edit" component={GoogleEdit}></Route>
+                    </Route>
+
                     {/* <Route path=':name/List' component={List}></Route> */}
                     {/* 用:name来指代apple和google */}
                     {/* <Route path="google" component={List}></Route> */}
@@ -53,24 +66,7 @@ class App extends React.Component {
         )
     }
 }
-function reducer(state, action) {
-    switch (action.type) {
-        case 'LOADING':
-            return {
-                loading: true
-            }
-        case 'STOPLOADING':
-            return {
-                loading: false
-            }
-        case 'SEARCH':
-            return {
-                key: action.key,
-            }
-        default: return state
-    }
-}
-const store = createStore(reducer)
+
 
 // ========================================
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Tabs, Spin } from 'antd'
-import axios from '../net'
+import axios from '../../net'
 const TabPane = Tabs.TabPane;
 class TabList extends React.Component {
     constructor(props) {

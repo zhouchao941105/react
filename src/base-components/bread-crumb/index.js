@@ -21,61 +21,48 @@ const Apps = ({ children }) => (
 //         current: 0
 //     }
 // }
-const hh = ['x', 'y', 'z']
 // const List = ({ params, children, props }) => {
-class Nist extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    searchCallback = val => {
-        this.props.dispatch({ type: 'SEARCH', key: val })
-    }
-    render() {
-        return (
-            <div>
-                <ul className="app-list">
-                    <li>
-                        <Button>
-                            <Link to={`/${this.props.params.name}/detail`}>Detail</Link>
-                        </Button>
-                        <Button>
-                            <Link to={`/${this.props.params.name}/edit`}>Edit</Link>
-                        </Button>
-                    </li>
-                </ul>
-                <Search placeholder="search something" onSearch={this.searchCallback} ></Search>
-                <p>it's application <span style={{ fontWeight: 'bold' }} >{this.props.params.name}</span></p>
-                <TabList list={hh}></TabList>
-                {/* {children} */}
-            </div >
-        )
-    }
+// class Nist extends React.Component {
+//     constructor(props) {
+//         super(props)
+//     }
+//     searchCallback = val => {
+//         this.props.dispatch({ type: 'SEARCH', key: val })
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <ul className="app-list">
+//                     <li>
+//                         <Button>
+//                             <Link to={`/${this.props.params.name}/detail`}>Detail</Link>
+//                         </Button>
+//                         <Button>
+//                             <Link to={`/${this.props.params.name}/edit`}>Edit</Link>
+//                         </Button>
+//                     </li>
+//                 </ul>
+//                 <Search placeholder="search something" onSearch={this.searchCallback} enterButton={true} defaultValue={this.props.searchVal} ></Search>
+//                 <p>it's application <span style={{ fontWeight: 'bold' }} >{this.props.params.name}</span></p>
+//                 <TabList list={hh}></TabList>
+//                 {/* {children} */}
+//             </div >
+//         )
+//     }
 
-}
-function stp(state = { key: '' }) {
-    return {
-        key: state.key
-    }
-}
-const List = connect(stp)(Nist);
+// }
+// function stp(state = { searchVal: '' }) {
+//     return {
+//         searchVal: state.searchVal
+//     }
+// }
+// const List = connect(stp)(Nist);
 const DefaultList = () => {
     return (
         <div>It's list area</div>
     )
 }
-const Detail = ({ params }) => {
-    return (
-        <div>
-            <Button>
-                <Link to={`/${params.name}/List`} >back to application {params.name}</Link>
-            </Button>
-            <Button>
-                <Link to={`/google/List`} >back to application google</Link>
-            </Button>
-            <p>it's <strong>Detail</strong> for {params.name}</p>
-        </div>
-    )
-}
+
 function setAsyncRouteLeaveHook(router, route, hook) {
     let withinHook = false
     let finalResult = undefined
@@ -179,7 +166,7 @@ class Output extends React.Component {
         )
     }
 }
-export { List, DefaultList, Detail, Edit, Home }
+export { DefaultList, Edit, Home }
 // ReactDOM.render(
 
 //     , mountNode);
