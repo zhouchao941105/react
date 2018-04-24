@@ -12,12 +12,12 @@ import './index.css';
 const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-import AppleList, { AppleContainer } from './app-components/apple/appleList'
-import AppleDetail from './app-components/apple/appleDetail'
-import AppleEdit from './app-components/apple/appleEdit'
-import GoogleList, { GoogleContainer } from './app-components/google/googleList'
-import GoogleDetail from './app-components/google/googleDetail'
-import GoogleEdit from './app-components/google/googleEdit'
+import AppleList, { AppleContainer } from './app-components/apple/list'
+import AppleDetail from './app-components/apple/detail'
+import AppleEdit from './app-components/apple/edit'
+import GoogleList, { GoogleContainer } from './app-components/google/list'
+import GoogleDetail from './app-components/google/detail'
+import GoogleEdit from './app-components/google/edit'
 import { List, DefaultList, Edit, Home } from './base-components/bread-crumb'
 import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'

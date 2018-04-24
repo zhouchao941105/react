@@ -15,11 +15,12 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
         // this.refs.menu && this.setState({
         //     current: e.key
         // })
-        this.props.dispatch({ type: 'NAVCHANGE', current: e.key })
+        // this.props.dispatch({ type: 'NAVCHANGE', current: e.key })
     }
     render() {
         return (
-            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={[this.props.current]} onClick={this.handleClick} ref='menu'>
+            // selectedKeys={[this.props.current]}
+            <Menu mode='inline' style={{ height: '600px' }} onClick={this.handleClick} ref='menu'>
                 <Menu.Item key='home'>
                     <Icon type="home" />
                     <Link to='/home' style={{ display: 'inline-block' }}>Home</Link>

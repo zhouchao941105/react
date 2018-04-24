@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Input, Breadcrumb } from 'antd'
+import { Button, Input, Breadcrumb, Tooltip, Table } from 'antd'
 import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
 
@@ -23,6 +23,11 @@ function mapStateToProps(state = { searchVal: '' }) {
     }
 }
 const hh = ['x', 'y', 'z']
+const sourceData = [{
+    name: 'haha'
+}, {
+    name: 'hwiii'
+}]
 export default connect(mapStateToProps)(class AppleList extends React.Component {
     constructor(props) {
         super(props)
@@ -44,8 +49,11 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
                     </li>
                 </ul>
                 <Search placeholder="search something" style={{ width: 300 }} onSearch={this.searchCallback} enterButton defaultValue={this.props.searchVal} ></Search>
-                <p>it's application <span style={{ fontWeight: 'bold' }} >apple</span></p>
+                <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='apple'>apple</Tooltip></span></p>
                 <TabList list={hh}></TabList>
+                <Table dataSource={sourceData}>
+                    <Table.Column title="name" dataIndex="name"></Table.Column>
+                </Table>
                 {/* {children} */}
             </div >
         )
