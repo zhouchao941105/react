@@ -11,34 +11,32 @@ class TabList extends React.Component {
             loading: false
         }
     }
-    getList = (key) => {
-        // this.props.dispatch({ type: 'LOADING' })
-        axios.get('/get', {
-            params: {
-                type: key
-            }
-        }).then(data => {
-            // this.props.dispatch({ type: 'STOPLOADING' })
+    // getList = (key) => {
+    //     // this.props.dispatch({ type: 'LOADING' })
+    //     axios.get('/get', {
+    //         params: {
+    //             type: key
+    //         }
+    //     }).then(data => {
+    //         // this.props.dispatch({ type: 'STOPLOADING' })
 
-            this.setState({
-                data: data.data.map(item => item.name),
-            })
-        }).catch(err => {
-            // this.props.dispatch({ type: 'STOPLOADING' })
-        })
-    }
+    //         this.setState({
+    //             data: data.data.map(item => item.name),
+    //         })
+    //     }).catch(err => {
+    //         // this.props.dispatch({ type: 'STOPLOADING' })
+    //     })
+    // }
     render() {
         return (
             <div>
-                <Spin spinning={this.props.loading || false} delay={1000}>
-                    <Tabs onChange={this.getList}>
-                        {this.props.list.map((item, idx) => {
-                            return (
-                                <TabPane tab={`tab${item}`} key={idx}></TabPane>
-                            )
-                        })}
-                    </Tabs>
-                </Spin>
+                <Tabs onChange={this.props.loadfun}>
+                    {this.props.list.map((item, idx) => {
+                        return (
+                            <TabPane tab={`tab${item}`} key={idx}></TabPane>
+                        )
+                    })}
+                </Tabs>
 
             </div>
         )

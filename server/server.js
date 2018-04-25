@@ -8,21 +8,33 @@ db.once('open', () => {
     console.log('ok');
 })
 var kittySchema = mongoose.Schema({
-    name: String
+    name: String,
+    school: String
 })
-kittySchema.methods.speak = function () {
-    var greet = this.name ? "Meow name is" + this.name : "no Name"
-    console.log(greet);
-}
+// kittySchema.methods.speak = function () {
+//     var greet = this.name ? "Meow name is" + this.name : "no Name"
+//     console.log(greet);
+// }
 var kitty = mongoose.model('Kitty', kittySchema);
-var instance = new kitty({
-    name: 'fuck'
-})
-// instance.speak();
-instance.save(function (err, ins) {
+var arr = [{ name: 'zhouchao0', school: '北京校区' }, { name: 'zhouchao1', school: '北京校区' }, { name: 'zhouchao2', school: '北京校区' }]
+kitty.find(function (err, list) {
     if (err) return console.log(err);
-    ins.speak();
+    if (!list.length) {
+        kitty.collection.insert(arr, (err, docs) => {
+            console.log('haha');
+        })
+    }
 })
+
+// var instance = new kitty({
+//     name: 'fuck',
+//     school: '北京校区'
+// })
+// instance.speak();
+// instance.save(function (err, ins) {
+//     if (err) return console.log(err);
+//     // ins.speak();
+// })
 var app = express();
 var host = '127.0.0.1';
 var port = 9090;
@@ -43,7 +55,7 @@ app.get('/get', function (req, res) {
     // }
     kitty.find(function (err, list) {
         if (err) return console.log(err);
-        res.send(list)
+        res.send(list.filter(item => item.name.indexOf(req.query.type) !== -1))
     })
 })
 app.listen(port, host, function (req, res) {

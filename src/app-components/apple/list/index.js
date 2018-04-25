@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Input, Breadcrumb, Tooltip, Table } from 'antd'
+import { Button, Input, Breadcrumb, Tooltip, Table, Spin } from 'antd'
 import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
+import axios from '../../../net'
 
 const Search = Input.Search
 
@@ -17,23 +18,43 @@ class AppleContainer extends React.Component {
 
     }
 }
-function mapStateToProps(state = { searchVal: '' }) {
+function mapStateToProps(state = { searchVal: '', loading: false }) {
     return {
-        searchVal: state.searchVal
+        searchVal: state.searchVal,
+        loading: state.loading
     }
 }
 const hh = ['x', 'y', 'z']
 const sourceData = [{
-    name: 'haha'
+    name: 'haha',
+    school: 'bei'
 }, {
-    name: 'hwiii'
+    name: 'hwiii',
+    school: 'hoohoh'
 }]
 export default connect(mapStateToProps)(class AppleList extends React.Component {
     constructor(props) {
         super(props)
     }
+    state = {
+        list: []
+    }
     searchCallback = val => {
         this.props.dispatch({ type: 'SEARCH', key: val })
+    }
+    getList = type => {
+        axios.get('/get', {
+            params: {
+                type
+            }
+        }).then(list => {
+            this.setState({
+                list: list.data
+            })
+        })
+    }
+    componentDidMount() {
+        this.getList('0')
     }
     render() {
         return (
@@ -50,10 +71,14 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
                 </ul>
                 <Search placeholder="search something" style={{ width: 300 }} onSearch={this.searchCallback} enterButton defaultValue={this.props.searchVal} ></Search>
                 <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='apple'>apple</Tooltip></span></p>
-                <TabList list={hh}></TabList>
-                <Table dataSource={sourceData}>
-                    <Table.Column title="name" dataIndex="name"></Table.Column>
-                </Table>
+                <TabList list={hh} loadfun={this.getList}></TabList>
+                <Spin spinning={this.props.loading || false} delay={1000} >
+                    <Table dataSource={this.state.list}>
+                        <Table.Column title="name" dataIndex="name" key="1"></Table.Column>
+                        <Table.Column title="school" dataIndex="school" key="2"></Table.Column>
+                    </Table>
+                </Spin>
+
                 {/* {children} */}
             </div >
         )
