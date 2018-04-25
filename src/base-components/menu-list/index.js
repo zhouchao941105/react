@@ -18,6 +18,7 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
         // this.props.dispatch({ type: 'NAVCHANGE', current: e.key })
     }
     render() {
+        console.log(this.props);
         return (
             // selectedKeys={[this.props.current]}
             <Menu mode='inline' style={{ height: '600px' }} onClick={this.handleClick} ref='menu'>

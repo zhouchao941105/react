@@ -22,12 +22,16 @@ import { List, DefaultList, Edit, Home } from './base-components/bread-crumb'
 import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'
 import Welcome from './base-components/welcome'
+var a = 0;
+setInterval(function () {
+    a++
+}, 1000)
 class Basic extends React.Component {
     render() {
         return (
             <Layout>
                 <Sider>
-                    <MenuList></MenuList>
+                    <MenuList en={a}></MenuList>
                 </Sider>
                 <Layout>
                     {this.props.children}
