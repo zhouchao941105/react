@@ -1,17 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Input, Breadcrumb } from 'antd'
+import { Button, Input, Breadcrumb, Layout } from 'antd'
 import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
+import MenuList from '../../../base-components/menu-list'
 
 const Search = Input.Search
+const { Sider } = Layout
+function itemRender(route, params, routes, paths) {
+    const last = routes.indexOf(route) === routes.length - 1
+    return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+}
 class GoogleContainer extends React.Component {
     render() {
         return (
-            <div>
-                <Breadcrumb routes={this.props.routes}></Breadcrumb>
-                {this.props.children}
-            </div>
+            <Layout style={{ margin: 16 }}>
+                <Sider>
+                    <MenuList select="google"></MenuList>
+                </Sider>
+                <Layout>
+                    <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
+                    {this.props.children}
+                </Layout>
+
+            </Layout>
         )
 
     }

@@ -57,80 +57,80 @@ const Apps = ({ children }) => (
 //     }
 // }
 // const List = connect(stp)(Nist);
-const DefaultList = () => {
-    return (
-        <div>It's list area</div>
-    )
-}
+// const DefaultList = () => {
+//     return (
+//         <div>It's list area</div>
+//     )
+// }
 
-function setAsyncRouteLeaveHook(router, route, hook) {
-    let withinHook = false
-    let finalResult = undefined
-    let finalResultSet = false
-    router.setRouteLeaveHook(route, nextLocation => {
-        withinHook = true
-        if (!finalResultSet) {
-            hook(nextLocation).then(result => {
-                finalResult = result
-                finalResultSet = true
-                if (!withinHook && nextLocation) {
-                    // Re-schedule the navigation
-                    router.push(nextLocation)
-                }
-            })
-        }
-        let result = finalResultSet ? finalResult : false
-        withinHook = false
-        finalResult = undefined
-        finalResultSet = false
-        return result
-    })
-}
-const Edit = withRouter(class extends React.Component {
-    // mixins: [Lifecycle],
-    componentDidMount() {
-        // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
-        this.props.router.setRouteLeaveHook(
-            this.props.route, this.routerWillLeave
-        )
-    }
-    routerWillLeave() {
-        //todo: hash
-        // return '确定离开？'
-        return new Promise((res, rej) => {
-            confirm({
-                title: '确定离开？',
-                onOk: () => {
-                    console.log('leave')
-                    return new Promise((resolve) => {
-                        setTimeout(() => {
-                            resolve();
-                            res();
-                        }, 3000)
-                    });
-                    // res()
-                },
-                onCancel: () => {
-                    console.log('stay')
-                    // return false
-                    rej()
-                },
-                okText: '确定',
-                cancelText: '取消'
-            })
-        })
+// function setAsyncRouteLeaveHook(router, route, hook) {
+//     let withinHook = false
+//     let finalResult = undefined
+//     let finalResultSet = false
+//     router.setRouteLeaveHook(route, nextLocation => {
+//         withinHook = true
+//         if (!finalResultSet) {
+//             hook(nextLocation).then(result => {
+//                 finalResult = result
+//                 finalResultSet = true
+//                 if (!withinHook && nextLocation) {
+//                     // Re-schedule the navigation
+//                     router.push(nextLocation)
+//                 }
+//             })
+//         }
+//         let result = finalResultSet ? finalResult : false
+//         withinHook = false
+//         finalResult = undefined
+//         finalResultSet = false
+//         return result
+//     })
+// }
+// const Edit = withRouter(class extends React.Component {
+//     // mixins: [Lifecycle],
+//     componentDidMount() {
+//         // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
+//         this.props.router.setRouteLeaveHook(
+//             this.props.route, this.routerWillLeave
+//         )
+//     }
+//     routerWillLeave() {
+//         //todo: hash
+//         // return '确定离开？'
+//         return new Promise((res, rej) => {
+//             confirm({
+//                 title: '确定离开？',
+//                 onOk: () => {
+//                     console.log('leave')
+//                     return new Promise((resolve) => {
+//                         setTimeout(() => {
+//                             resolve();
+//                             res();
+//                         }, 3000)
+//                     });
+//                     // res()
+//                 },
+//                 onCancel: () => {
+//                     console.log('stay')
+//                     // return false
+//                     rej()
+//                 },
+//                 okText: '确定',
+//                 cancelText: '取消'
+//             })
+//         })
 
-    }
-    render() {
-        return (
-            <div>
-                <Button>
-                    <Link to={`/${this.props.params.name}/List`} >back to application {this.props.params.name}</Link>
-                </Button>
-                <p><strong>Edit</strong> area for {this.props.params.name}</p>
-            </div>)
-    }
-})
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <Button>
+//                     <Link to={`/${this.props.params.name}/List`} >back to application {this.props.params.name}</Link>
+//                 </Button>
+//                 <p><strong>Edit</strong> area for {this.props.params.name}</p>
+//             </div>)
+//     }
+// })
 const Home = ({ routes, params, children }) => {
     routes.shift()
     return (
@@ -146,27 +146,27 @@ const Home = ({ routes, params, children }) => {
         </div>
     )
 };
-class Output extends React.Component {
-    // leave = (a, b) => {
-    //     return confirm({
-    //         title: '确定离开？',
-    //         onOk: () => {
-    //             console.log('leave')
-    //         },
-    //         onCancel: () => {
-    //             console.log('stay')
-    //         },
-    //         okText: '确定',
-    //         cancelText: '取消'
-    //     })
-    // }
-    render() {
-        return (
-            {/* <Route name="apps" breadcrumbName="Application List" path="apps" component={Apps}> */ }
-        )
-    }
-}
-export { DefaultList, Edit, Home }
+// class Output extends React.Component {
+//     // leave = (a, b) => {
+//     //     return confirm({
+//     //         title: '确定离开？',
+//     //         onOk: () => {
+//     //             console.log('leave')
+//     //         },
+//     //         onCancel: () => {
+//     //             console.log('stay')
+//     //         },
+//     //         okText: '确定',
+//     //         cancelText: '取消'
+//     //     })
+//     // }
+//     render() {
+//         return (
+//             {/* <Route name="apps" breadcrumbName="Application List" path="apps" component={Apps}> */ }
+//         )
+//     }
+// }
+export { Home }
 // ReactDOM.render(
 
 //     , mountNode);

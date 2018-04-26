@@ -30,13 +30,11 @@ class Basic extends React.Component {
     render() {
         return (
             <Layout>
-                <Sider>
+                {/* <Sider>
                     <MenuList en={a}></MenuList>
-                </Sider>
-                <Layout>
-                    {this.props.children}
-                    {/* <Output></Output> */}
-                </Layout>
+                </Sider> */}
+                {this.props.children}
+                {/* <Output></Output> */}
             </Layout>
         )
     }
@@ -47,14 +45,13 @@ class App extends React.Component {
             <Router history={browserHistory}>
                 <Route path='/' component={Basic}>
                     <IndexRoute component={Welcome}></IndexRoute>
-                    <Route path='home' component={Welcome}></Route>
                     <Route path="apple" breadcrumbName="apple" component={AppleContainer} >
                         <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute>
                         <Route path="List" breadcrumbName="List" component={AppleList}></Route>
                         <Route path='Detail' breadcrumbName="Detail" component={AppleDetail}></Route>
                         <Route path='Edit' breadcrumbName="Edit" component={AppleEdit}></Route>
                     </Route>
-                    <Route path="google" breadcrumbName="google" component={Home} >
+                    <Route path="google" breadcrumbName="google" component={GoogleContainer} >
                         <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute>
                         <Route path="List" breadcrumbName="List" component={GoogleList}></Route>
                         <Route path='Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
