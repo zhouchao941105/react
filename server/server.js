@@ -19,11 +19,8 @@ var kitty = mongoose.model('Kitty', kittySchema);
 var arr = [{ name: 'zhouchao0', school: '北京校区' }, { name: 'zhouchao1', school: '北京校区' }, { name: 'zhouchao2', school: '北京校区' }]
 kitty.find(function (err, list) {
     if (err) return console.log(err);
-    if (!list.length) {
-        kitty.collection.insert(arr, (err, docs) => {
-            console.log('haha');
-        })
-    }
+    kitty.collection.insert(arr, (err, docs) => {
+    })
 })
 
 // var instance = new kitty({

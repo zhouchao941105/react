@@ -22,10 +22,6 @@ import { List, DefaultList, Edit, Home } from './base-components/bread-crumb'
 import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'
 import Welcome from './base-components/welcome'
-var a = 0;
-setInterval(function () {
-    a++
-}, 1000)
 class Basic extends React.Component {
     render() {
         return (
@@ -44,7 +40,7 @@ class App extends React.Component {
         return (
             <Router history={browserHistory}>
                 <Route path='/' component={Basic}>
-                    <IndexRoute component={Welcome}></IndexRoute>
+                    <IndexRoute component={AppleContainer}></IndexRoute>
                     <Route path="apple" breadcrumbName="apple" component={AppleContainer} >
                         <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute>
                         <Route path="List" breadcrumbName="List" component={AppleList}></Route>
