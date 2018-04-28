@@ -21,7 +21,7 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
         console.log(this.props);
         return (
             // selectedKeys={[this.props.current]}
-            <Menu mode='inline' style={{ height: '600px' }} selectedKeys={[this.props.select]} onClick={this.handleClick} ref='menu'>
+            <Menu mode='inline' style={{ height: '900px' }} selectedKeys={[this.props.select]} onClick={this.handleClick} ref='menu'>
                 {/* <Menu.Item key='home'>
                     <Icon type="home" />
                     <Link to='/home' style={{ display: 'inline-block' }}>Home</Link>

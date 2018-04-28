@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Input, Breadcrumb, Layout } from 'antd'
+import { Button, Input, Breadcrumb, Layout, Tooltip } from 'antd'
 import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
@@ -55,7 +55,7 @@ export default connect(mapStateToProps)(class GoogleList extends React.Component
                     </li>
                 </ul>
                 {/* <Search placeholder="search something" onSearch={this.searchCallback} enterButton={true} defaultValue={this.props.searchVal} ></Search> */}
-                <p>it's application <span style={{ fontWeight: 'bold' }} >google</span></p>
+                <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='google'>google</Tooltip></span></p>
                 <TabList list={hh}></TabList>
                 {/* {children} */}
             </div >
