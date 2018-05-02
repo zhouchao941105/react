@@ -79,6 +79,9 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
                         <Button>
                             <Link to={`/apple/edit`}>Edit</Link>
                         </Button>
+                        <Button>
+                            <Link to={`/apple/edit`}>New</Link>
+                        </Button>
                     </li>
                 </ul>
                 <Search placeholder="search something" style={{ width: 300 }} onSearch={this.searchCallback} enterButton defaultValue={this.props.searchVal} ></Search>
