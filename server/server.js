@@ -55,6 +55,12 @@ app.get('/get', function (req, res) {
         res.send(list.filter(item => item.name.indexOf(req.query.type) !== -1))
     })
 })
+app.post('/create', (req, res) => {
+    kitty.collection.insert([req], (err, docs) => {
+        console.log(docs);
+        res.send(true)
+    })
+})
 app.listen(port, host, function (req, res) {
     console.log(`running at ${port}`);
 })

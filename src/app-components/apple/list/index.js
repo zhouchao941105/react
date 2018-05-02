@@ -61,7 +61,7 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
             }
         }).then(list => {
             this.setState({
-                list: list.data
+                list: list
             })
         })
     }

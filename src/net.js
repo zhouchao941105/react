@@ -8,7 +8,7 @@ axios.interceptors.request.use((req) => {
 })
 axios.interceptors.response.use(res => {
     store.dispatch({ type: 'STOPLOADING' })
-    return res
+    return res.data
 }, err => {
     store.dispatch({ type: 'STOPLOADING' })
     return Promise.reject(err)
