@@ -4,7 +4,7 @@ import { Button, Input, Breadcrumb, Layout, Tooltip } from 'antd'
 import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
-
+import Lazyload from '../../../base-components/lazy-load'
 const Search = Input.Search
 const { Sider } = Layout
 function itemRender(route, params, routes, paths) {
@@ -21,6 +21,7 @@ class GoogleContainer extends React.Component {
                 <Layout>
                     <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
                     {this.props.children}
+                    <Lazyload></Lazyload>
                 </Layout>
 
             </Layout>
