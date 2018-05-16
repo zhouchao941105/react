@@ -6,26 +6,30 @@ import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import Lazyload from '../../../base-components/lazy-load'
 import axios from '../../../net'
+import Title from '../../../base-components/document-title'
 const Search = Input.Search
 const { Sider } = Layout
 
 function itemRender(route, params, routes, paths) {
     const last = routes.indexOf(route) === routes.length - 1
-    return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+    return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')} key={routes.indexOf(route)}>{route.breadcrumbName}</Link>
 }
 class GoogleContainer extends React.Component {
     render() {
         return (
-            <Layout style={{ margin: 16 }}>
-                <Sider>
-                    <MenuList select="google"></MenuList>
-                </Sider>
-                <Layout>
-                    <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
-                    {this.props.children}
-                </Layout>
+            <Title title="google">
+                <Layout style={{ margin: 16 }}>
+                    <Sider>
+                        <MenuList select="google"></MenuList>
+                    </Sider>
+                    <Layout>
+                        <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
+                        {this.props.children}
+                    </Layout>
 
-            </Layout>
+                </Layout>
+            </Title>
+
         )
 
     }
@@ -83,8 +87,8 @@ export default connect(mapStateToProps)(class GoogleList extends React.Component
                 <Lazyload cb={this.haha}>
                     <div>
                         <ul>
-                            {this.state && this.state.list.map(item =>
-                                <li>{item.name}</li>
+                            {this.state && this.state.list.map((item, idx) =>
+                                <li key={idx}>{item.name}</li>
                             )}
                         </ul>
                     </div>

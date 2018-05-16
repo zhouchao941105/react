@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import axios from '../../../net'
+import Title from '../../../base-components/document-title'
 
 const Search = Input.Search
 const { Sider } = Layout;
@@ -16,16 +17,18 @@ class AppleContainer extends React.Component {
 
     render() {
         return (
-            <Layout style={{ margin: 16 }}>
-                <Sider>
-                    <MenuList select="apple"></MenuList>
-                </Sider>
-                <Layout>
-                    <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
-                    {this.props.children}
-                </Layout>
+            <Title title="apple">
+                <Layout style={{ margin: 16 }}>
+                    <Sider>
+                        <MenuList select="apple"></MenuList>
+                    </Sider>
+                    <Layout>
+                        <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
+                        {this.props.children}
+                    </Layout>
 
-            </Layout>
+                </Layout>
+            </Title>
         )
 
     }

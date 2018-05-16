@@ -9,9 +9,6 @@ import store from './redux/index'
 import moment from 'moment'
 import './index.css';
 // import 'antd/dist/antd.less';
-const { RangePicker } = DatePicker
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 import AppleList, { AppleContainer } from './app-components/apple/list'
 import AppleDetail from './app-components/apple/detail'
 import AppleEdit from './app-components/apple/edit'
@@ -22,6 +19,10 @@ import { List, DefaultList, Edit, Home } from './base-components/bread-crumb'
 import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'
 import Welcome from './base-components/welcome'
+import Title from './base-components/document-title'
+const { RangePicker } = DatePicker
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 class Basic extends React.Component {
     render() {
         return (
@@ -53,7 +54,6 @@ class App extends React.Component {
                         <Route path='Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
                         <Route path='Edit' breadcrumbName="Edit" component={GoogleEdit}></Route>
                     </Route>
-
                     {/* <Route path=':name/List' component={List}></Route> */}
                     {/* 用:name来指代apple和google */}
                     {/* <Route path="google" component={List}></Route> */}
