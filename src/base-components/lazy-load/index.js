@@ -23,23 +23,25 @@ class LazyloadContainer extends React.Component {
         var el = findDOMNode(this)
         var scrollel = findDOMNode(this.refs.scroll)
         el.addEventListener('scroll', () => {
-            if (el.scrollTop + el.clientHeight + 1 > scrollel.clientHeight) {
-                console.log('trigger');
-                this.setState({
-                    height: this.state.height + 300
-                })
+            if (el.scrollTop + el.clientHeight + 0.1 > scrollel.clientHeight) {
+                // console.log('trigger');
+                // this.setState({
+                //     height: this.state.height + 300
+                // })
+                this.props.cb && this.props.cb()
             }
             // console.log(el.scrollTop);
-            console.log('ss' + scrollel.clientHeight, scrollel.scrollHeight);
+            // console.log('ss' + scrollel.clientHeight, scrollel.scrollHeight);
         })
-        console.log(scrollel);
+        // console.log(scrollel);
     }
 
     render() {
         return (
-            <div style={{ height: '600', backgroundColor: 'pink', overflow: 'auto' }}>
+            <div style={{ height: '300', backgroundColor: 'rgba(189,199,33,.13)', overflow: 'auto' }}>
                 <div ref='scroll'>
-                    <div style={{ height: this.state.height }}></div>
+                    {/* <div style={{ height: this.state.height }}></div> */}
+                    {this.props.children}
                 </div>
                 {/* {this.props.Component} */}
             </div>)

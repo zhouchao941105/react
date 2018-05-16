@@ -88,7 +88,7 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
                 <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='apple'>apple</Tooltip></span></p>
                 <TabList list={hh} loadfun={this.getList}></TabList>
                 <Spin spinning={this.props.loading || false} delay={1000} >
-                    <Table dataSource={this.state.list}>
+                    <Table dataSource={this.state.list} pagination={{ pageSize: 10 }} >
                         <Table.Column title="name" dataIndex="name" key="1"></Table.Column>
                         <Table.Column title="school" dataIndex="school" key="2"></Table.Column>
                     </Table>

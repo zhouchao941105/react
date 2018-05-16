@@ -5,8 +5,10 @@ import { Link } from 'react-router'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import Lazyload from '../../../base-components/lazy-load'
+import axios from '../../../net'
 const Search = Input.Search
 const { Sider } = Layout
+
 function itemRender(route, params, routes, paths) {
     const last = routes.indexOf(route) === routes.length - 1
     return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
@@ -21,7 +23,6 @@ class GoogleContainer extends React.Component {
                 <Layout>
                     <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
                     {this.props.children}
-                    <Lazyload></Lazyload>
                 </Layout>
 
             </Layout>
@@ -42,6 +43,27 @@ export default connect(mapStateToProps)(class GoogleList extends React.Component
     // searchCallback = val => {
     //     this.props.dispatch({ type: 'SEARCH', key: val })
     // }
+    getList = type => {
+        axios.get('/get', {
+            params: {
+                type
+            }
+        }).then(list => {
+            this.setState({
+                list: list
+            })
+            this.initList = list;
+        })
+    }
+    haha = () => {
+        // console.log('works');
+        this.setState({
+            list: this.state.list.concat(this.initList)
+        })
+    }
+    componentDidMount() {
+        this.getList('0')
+    }
     render() {
         return (
             <div>
@@ -58,6 +80,15 @@ export default connect(mapStateToProps)(class GoogleList extends React.Component
                 {/* <Search placeholder="search something" onSearch={this.searchCallback} enterButton={true} defaultValue={this.props.searchVal} ></Search> */}
                 <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='google'>google</Tooltip></span></p>
                 <TabList list={hh}></TabList>
+                <Lazyload cb={this.haha}>
+                    <div>
+                        <ul>
+                            {this.state && this.state.list.map(item =>
+                                <li>{item.name}</li>
+                            )}
+                        </ul>
+                    </div>
+                </Lazyload>
                 {/* {children} */}
             </div >
         )
