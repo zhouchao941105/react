@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import { Modal, Button } from 'antd'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 const confirm = Modal.confirm
 function setAsyncRouteLeaveHook(router, route, hook) {
     let withinHook = false

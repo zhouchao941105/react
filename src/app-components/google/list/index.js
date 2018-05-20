@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Input, Breadcrumb, Layout, Tooltip } from 'antd'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import Lazyload from '../../../base-components/lazy-load'

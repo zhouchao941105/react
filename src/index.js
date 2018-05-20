@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { HashRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
-import { browserHistory, Router, IndexRoute } from 'react-router'
-import { DatePicker, Button, From, Layout, Icon, Menu, Breadcrumb } from 'antd'
+import { BrowserRouter as Router, Route, Link, withRouter, Switch } from 'react-router-dom'
+// import { IndexRoute } from 'react-router'
+import { Layout, Menu, Breadcrumb } from 'antd'
 import store from './redux/index'
 import moment from 'moment'
 import './index.css';
@@ -20,7 +20,7 @@ import MenuList from './base-components/menu-list'
 // import Home from './bread/bread'
 import Welcome from './base-components/welcome'
 import Title from './base-components/document-title'
-const { RangePicker } = DatePicker
+// const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 class Basic extends React.Component {
@@ -39,27 +39,34 @@ class Basic extends React.Component {
 class App extends React.Component {
     render() {
         return (
-            <Router history={browserHistory}>
-                <Route path='/' component={Basic}>
-                    <IndexRoute component={AppleContainer}></IndexRoute>
-                    <Route path="apple" breadcrumbName="apple" component={AppleContainer} >
-                        <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute>
-                        <Route path="List" breadcrumbName="List" component={AppleList}></Route>
-                        <Route path='Detail' breadcrumbName="Detail" component={AppleDetail}></Route>
-                        <Route path='Edit' breadcrumbName="Edit" component={AppleEdit}></Route>
-                    </Route>
-                    <Route path="google" breadcrumbName="google" component={GoogleContainer} >
-                        <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute>
-                        <Route path="List" breadcrumbName="List" component={GoogleList}></Route>
-                        <Route path='Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
-                        <Route path='Edit' breadcrumbName="Edit" component={GoogleEdit}></Route>
-                    </Route>
-                    {/* <Route path=':name/List' component={List}></Route> */}
-                    {/* 用:name来指代apple和google */}
-                    {/* <Route path="google" component={List}></Route> */}
-                    {/* </Route> */}
-                </Route>
-            </Router>
+            <Router>
+                {/* <Basic> */}
+                {/* <IndexRoute component={AppleContainer}></IndexRoute> */}
+                <Switch>
+                    {/* <Route exact path="/" component={AppleContainer} /> */}
+                    {/* <Route path="apple" breadcrumbName="apple" component={AppleContainer} /> */}
+                    {/* <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute> */}
+                    <Route exact path="/" breadcrumbName="List" component={Basic} />
+                    <Route path="/apple/List" breadcrumbName="List" component={AppleList}></Route>
+                    <Route path='/apple/Detail' breadcrumbName="Detail" component={AppleDetail}></Route>
+                    <Route path='/apple/Edit' breadcrumbName="Edit" component={AppleEdit}></Route>
+
+
+                    {/* <Route path="google" breadcrumbName="google" component={GoogleContainer} /> */}
+                    {/* <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute> */}
+                    {/* <Route exact path="/" breadcrumbName="List" component={GoogleList} /> */}
+
+                    <Route path="google/List" breadcrumbName="List" component={GoogleList}></Route>
+                    <Route path='google/Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
+                    <Route path='google/Edit' breadcrumbName="Edit" component={GoogleEdit}></Route>
+                </Switch>
+                {/* <Route path=':name/List' component={List}></Route> */}
+                {/* 用:name来指代apple和google */}
+                {/* <Route path="google" component={List}></Route> */}
+                {/* </Route> */}
+                {/* </Route> */}
+                {/* </Basic> */}
+            </Router >
         )
     }
 }
