@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Input, Breadcrumb, Layout, Tooltip } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import Lazyload from '../../../base-components/lazy-load'
 import axios from '../../../net'
 import Title from '../../../base-components/document-title'
+import GoogleEdit from '../edit/index'
+import GoogleDetail from '../detail/index'
+
 const Search = Input.Search
 const { Sider } = Layout
 
@@ -18,15 +21,16 @@ class GoogleContainer extends React.Component {
     render() {
         return (
             <Title title="google">
-                <Layout style={{ margin: 16 }}>
+                <Layout style={{ margin: 0 }}>
                     <Sider>
                         <MenuList select="google"></MenuList>
                     </Sider>
                     <Layout>
                         <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
-                        {this.props.children}
+                        <Route path={`${this.props.match.url}/list`} component={GoogleList}></Route>
+                        <Route path={`${this.props.match.url}/edit`} component={GoogleEdit}></Route>
+                        <Route path={`${this.props.match.url}/detail`} component={GoogleDetail}></Route>
                     </Layout>
-
                 </Layout>
             </Title>
 
@@ -40,7 +44,7 @@ function mapStateToProps(state = { searchVal: '' }) {
     }
 }
 const hh = ['d', 'e', 'f']
-export default connect(mapStateToProps)(class GoogleList extends React.Component {
+const GoogleList = connect(mapStateToProps)(class List extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -62,7 +66,7 @@ export default connect(mapStateToProps)(class GoogleList extends React.Component
     haha = () => {
         // console.log('works');
         this.setState({
-            list: this.state.list.concat(this.initList)
+            list: this.state.list.concat([{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }, { name: 5 }, { name: 6 }, { name: 7 }, { name: 8 }, { name: 9 }, { name: 10 }])
         })
     }
     componentDidMount() {

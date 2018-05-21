@@ -38,7 +38,7 @@ class LazyloadContainer extends React.Component {
 
     render() {
         return (
-            <div style={{ height: '300', backgroundColor: 'rgba(189,199,33,.13)', overflow: 'auto' }}>
+            <div style={{ height: '300px', backgroundColor: 'rgba(189,199,33,.13)', overflow: 'auto' }}>
                 <div ref='scroll'>
                     {/* <div style={{ height: this.state.height }}></div> */}
                     {this.props.children}

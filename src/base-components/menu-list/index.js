@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Menu, Icon } from 'antd';
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 function mapStateToProps(state = { current: 'home' }) {
     return {
         current: state.current
@@ -18,7 +18,6 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
         // this.props.dispatch({ type: 'NAVCHANGE', current: e.key })
     }
     render() {
-        console.log(this.props);
         return (
             // selectedKeys={[this.props.current]}
             <Menu mode='inline' style={{ height: '900px' }} selectedKeys={[this.props.select]} onClick={this.handleClick} ref='menu'>

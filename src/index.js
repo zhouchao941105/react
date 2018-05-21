@@ -46,19 +46,16 @@ class App extends React.Component {
                     {/* <Route exact path="/" component={AppleContainer} /> */}
                     {/* <Route path="apple" breadcrumbName="apple" component={AppleContainer} /> */}
                     {/* <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute> */}
-                    <Route exact path="/" breadcrumbName="List" component={Basic} />
-                    <Route path="/apple/List" breadcrumbName="List" component={AppleList}></Route>
-                    <Route path='/apple/Detail' breadcrumbName="Detail" component={AppleDetail}></Route>
-                    <Route path='/apple/Edit' breadcrumbName="Edit" component={AppleEdit}></Route>
-
-
+                    {/* <Route exact path="/" breadcrumbName="List" component={Basic} /> */}
+                    <Route path="/apple" breadcrumbName="List" component={AppleContainer}></Route>
+                    {/* <Route path='/apple/Detail' breadcrumbName="Detail" component={AppleDetail}></Route> */}
+                    {/* <Route path='/apple/Edit' breadcrumbName="Edit" component={AppleEdit}></Route> */}
                     {/* <Route path="google" breadcrumbName="google" component={GoogleContainer} /> */}
                     {/* <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute> */}
                     {/* <Route exact path="/" breadcrumbName="List" component={GoogleList} /> */}
-
-                    <Route path="google/List" breadcrumbName="List" component={GoogleList}></Route>
-                    <Route path='google/Detail' breadcrumbName="Detail" component={GoogleDetail}></Route>
-                    <Route path='google/Edit' breadcrumbName="Edit" component={GoogleEdit}></Route>
+                    <Route path="/google" breadcrumbName="List" component={GoogleContainer}></Route>
+                    {/* <Route path='google/Detail' breadcrumbName="Detail" component={GoogleDetail}></Route> */}
+                    {/* <Route path='google/Edit' breadcrumbName="Edit" component={GoogleEdit}></Route> */}
                 </Switch>
                 {/* <Route path=':name/List' component={List}></Route> */}
                 {/* 用:name来指代apple和google */}

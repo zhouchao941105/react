@@ -1,7 +1,6 @@
 import React from 'react'
-import { withRouter } from 'react-router'
 import { Modal, Button } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 const confirm = Modal.confirm
 function setAsyncRouteLeaveHook(router, route, hook) {
     let withinHook = false
@@ -29,7 +28,7 @@ function setAsyncRouteLeaveHook(router, route, hook) {
 const AppleEdit = withRouter(class extends React.Component {
     // mixins: [Lifecycle],
     componentDidMount() {
-        setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
+        // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
         // this.props.router.setRouteLeaveHook(
         //     this.props.route, this.routerWillLeave
         // )

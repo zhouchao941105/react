@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Input, Breadcrumb, Tooltip, Table, Spin, Layout } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import axios from '../../../net'
 import Title from '../../../base-components/document-title'
+
+import AppleEdit from '../edit/index'
+import AppleDetail from "../detail/index";
 
 const Search = Input.Search
 const { Sider } = Layout;
@@ -18,13 +21,15 @@ class AppleContainer extends React.Component {
     render() {
         return (
             <Title title="apple">
-                <Layout style={{ margin: 16 }}>
+                <Layout style={{ margin: 0 }}>
                     <Sider>
                         <MenuList select="apple"></MenuList>
                     </Sider>
                     <Layout>
                         <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
-                        {this.props.children}
+                        <Route path={`${this.props.match.url}/list`} component={AppleList}></Route>
+                        <Route path={`${this.props.match.url}/edit`} component={AppleEdit}></Route>
+                        <Route path={`${this.props.match.url}/detail`} component={AppleDetail}></Route>
                     </Layout>
 
                 </Layout>
@@ -47,7 +52,7 @@ const sourceData = [{
     name: 'hwiii',
     school: 'hoohoh'
 }]
-export default connect(mapStateToProps)(class AppleList extends React.Component {
+const AppleList = connect(mapStateToProps)(class List extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -91,7 +96,7 @@ export default connect(mapStateToProps)(class AppleList extends React.Component 
                 <p>it's application <span style={{ fontWeight: 'bold' }} ><Tooltip title='apple'>apple</Tooltip></span></p>
                 <TabList list={hh} loadfun={this.getList}></TabList>
                 <Spin spinning={this.props.loading || false} delay={1000} >
-                    <Table dataSource={this.state.list} pagination={{ pageSize: 10 }} >
+                    <Table rowKey='_id' dataSource={this.state.list} pagination={{ pageSize: 10 }} >
                         <Table.Column title="name" dataIndex="name" key="1"></Table.Column>
                         <Table.Column title="school" dataIndex="school" key="2"></Table.Column>
                     </Table>
