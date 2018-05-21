@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Link, withRouter, Switch } from 'react-router-dom'
 // import { IndexRoute } from 'react-router'
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu, Breadcrumb, Modal } from 'antd'
 import store from './redux/index'
 import moment from 'moment'
 import './index.css';
@@ -23,6 +23,7 @@ import Title from './base-components/document-title'
 // const { RangePicker } = DatePicker
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+const { Confirm } = Modal
 class Basic extends React.Component {
     render() {
         return (
@@ -36,10 +37,34 @@ class Basic extends React.Component {
         )
     }
 }
+function remindFun() {
+    debugger
+    return new Promise((res, rej) => {
+        confirm({
+            title: '确定离开？',
+            onOk: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve();
+                        res();
+                    }, 3000)
+                });
+                // res()
+            },
+            onCancel: () => {
+                console.log('stay')
+                // return false
+                rej()
+            },
+            okText: '确定',
+            cancelText: '取消'
+        })
+    })
+}
 class App extends React.Component {
     render() {
         return (
-            <Router>
+            <Router getUserConfirmation={remindFun}>
                 {/* <Basic> */}
                 {/* <IndexRoute component={AppleContainer}></IndexRoute> */}
                 <Switch>
