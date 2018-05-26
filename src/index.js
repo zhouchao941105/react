@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Link, withRouter, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, withRouter, Switch, Redirect } from 'react-router-dom'
 // import { IndexRoute } from 'react-router'
 import { Layout, Menu, Breadcrumb, Modal } from 'antd'
 import store from './redux/index'
@@ -37,34 +37,33 @@ class Basic extends React.Component {
         )
     }
 }
-function remindFun() {
-    debugger
-    return new Promise((res, rej) => {
-        confirm({
-            title: '确定离开？',
-            onOk: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve();
-                        res();
-                    }, 3000)
-                });
-                // res()
-            },
-            onCancel: () => {
-                console.log('stay')
-                // return false
-                rej()
-            },
-            okText: '确定',
-            cancelText: '取消'
-        })
-    })
-}
+// function remindFun() {
+//     return new Promise((res, rej) => {
+//         confirm({
+//             title: '确定离开？',
+//             onOk: () => {
+//                 return new Promise((resolve) => {
+//                     setTimeout(() => {
+//                         resolve();
+//                         res();
+//                     }, 3000)
+//                 });
+//                 // res()
+//             },
+//             onCancel: () => {
+//                 console.log('stay')
+//                 // return false
+//                 rej()
+//             },
+//             okText: '确定',
+//             cancelText: '取消'
+//         })
+//     })
+// }
 class App extends React.Component {
     render() {
         return (
-            <Router getUserConfirmation={remindFun}>
+            <Router >
                 {/* <Basic> */}
                 {/* <IndexRoute component={AppleContainer}></IndexRoute> */}
                 <Switch>
@@ -72,6 +71,7 @@ class App extends React.Component {
                     {/* <Route path="apple" breadcrumbName="apple" component={AppleContainer} /> */}
                     {/* <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute> */}
                     {/* <Route exact path="/" breadcrumbName="List" component={Basic} /> */}
+                    <Redirect path="/" exact to="/apple/list"></Redirect>
                     <Route path="/apple" breadcrumbName="List" component={AppleContainer}></Route>
                     {/* <Route path='/apple/Detail' breadcrumbName="Detail" component={AppleDetail}></Route> */}
                     {/* <Route path='/apple/Edit' breadcrumbName="Edit" component={AppleEdit}></Route> */}
