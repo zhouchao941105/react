@@ -17,8 +17,19 @@ function itemRender(route, params, routes, paths) {
     return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
 }
 class AppleContainer extends React.Component {
-
+    routes = [{
+        path: 'index',
+        breadcrumbName: '首页'
+    }, {
+        path: 'first',
+        breadcrumbName: '一级面包屑'
+    }, {
+        path: 'second',
+        breadcrumbName: '当前页面'
+    }]
     render() {
+        debugger
+
         return (
             <Title title="apple">
                 <Layout style={{ margin: 0 }}>
