@@ -65,7 +65,7 @@ class AppleEdit extends React.Component {
         return (
             <div>
                 <Button>
-                    <Link to={`/apple/List`} >back to application apple</Link>
+                    <Link to={`/apple/list`} >back to application apple</Link>
                 </Button>
                 <p><strong>Edit</strong> area for apple</p>
             </div>)

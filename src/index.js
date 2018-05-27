@@ -72,13 +72,13 @@ class App extends React.Component {
                     {/* <IndexRoute breadcrumbName="List" component={AppleList}></IndexRoute> */}
                     {/* <Route exact path="/" breadcrumbName="List" component={Basic} /> */}
                     <Redirect path="/" exact to="/apple/list"></Redirect>
-                    <Route name="apple" path="/apple" breadcrumbName="List" render={(props) => (<AppleContainer {...props} a='2'></AppleContainer>)}></Route>
+                    <Route name="apple" path="/apple" render={(props) => (<AppleContainer {...props} a='2'></AppleContainer>)}></Route>
                     {/* <Route path='/apple/Detail' breadcrumbName="Detail" component={AppleDetail}></Route> */}
                     {/* <Route path='/apple/Edit' breadcrumbName="Edit" component={AppleEdit}></Route> */}
                     {/* <Route path="google" breadcrumbName="google" component={GoogleContainer} /> */}
                     {/* <IndexRoute breadcrumbName="List" component={GoogleList}></IndexRoute> */}
                     {/* <Route exact path="/" breadcrumbName="List" component={GoogleList} /> */}
-                    <Route path="/google" breadcrumbName="List" component={GoogleContainer}></Route>
+                    <Route path="/google" component={GoogleContainer}></Route>
                     {/* <Route path='google/Detail' breadcrumbName="Detail" component={GoogleDetail}></Route> */}
                     {/* <Route path='google/Edit' breadcrumbName="Edit" component={GoogleEdit}></Route> */}
                 </Switch>

@@ -5,7 +5,7 @@ const GoogleDetail = ({ params }) => {
     return (
         <div>
             <Button>
-                <Link to={`/google/List`} >back to application google</Link>
+                <Link to={`/google/list`} >back to application google</Link>
             </Button>
             <p>it's <strong>Detail</strong> for google</p>
         </div>

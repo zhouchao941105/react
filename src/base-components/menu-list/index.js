@@ -27,7 +27,7 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
                 </Menu.Item> */}
                 <Menu.Item key='apple'>
                     <Icon type="apple" />
-                    <Link to="/apple/List" style={{ display: 'inline-block' }}>Apple</Link>
+                    <Link to="/apple/list" style={{ display: 'inline-block' }}>Apple</Link>
                 </Menu.Item>
                 {/* <Menu.Item>
                                 <Icon type="desktop" />
@@ -39,7 +39,7 @@ export default connect(mapStateToProps)(class MenuList extends React.Component {
                             </Menu.Item> */}
                 <Menu.Item key="google">
                     <Icon type="google" />
-                    <Link to="/google/List" style={{ display: 'inline-block' }}>Google</Link>
+                    <Link to="/google/list" style={{ display: 'inline-block' }}>Google</Link>
                 </Menu.Item>
             </Menu>
 

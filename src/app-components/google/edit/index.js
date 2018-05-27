@@ -64,7 +64,7 @@ const GoogleEdit = withRouter(class extends React.Component {
         return (
             <div>
                 <Button>
-                    <Link to={`/google/List`} >back to application google</Link>
+                    <Link to={`/google/list`} >back to application google</Link>
                 </Button>
                 <p><strong>Edit</strong> area for google</p>
             </div>)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, Input, Breadcrumb, Tooltip, Table, Spin, Layout } from 'antd'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, Switch, Redirect } from 'react-router-dom'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import axios from '../../../net'
@@ -12,24 +12,29 @@ import AppleDetail from "../detail/index";
 
 const Search = Input.Search
 const { Sider } = Layout;
-function itemRender(route, params, routes, paths) {
-    const last = routes.indexOf(route) === routes.length - 1
-    return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+// function itemRender(route, params, routes, paths) {
+//     const last = routes.indexOf(route) === routes.length - 1
+//     return last ? <span>{route.breadcrumbName}</span> : <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+// }
+const nameMap = {
+    '/apple': 'apple',
+    '/apple/list': 'list',
+    '/apple/edit': 'edit',
+    '/apple/detail': 'detail'
 }
 class AppleContainer extends React.Component {
-    routes = [{
-        path: 'index',
-        breadcrumbName: '首页'
-    }, {
-        path: 'first',
-        breadcrumbName: '一级面包屑'
-    }, {
-        path: 'second',
-        breadcrumbName: '当前页面'
-    }]
     render() {
-        debugger
-
+        const routeList = this.props.location.pathname.split('/').filter(i => i)
+        const breadList = routeList.map((item, idx, arr) => {
+            let url = `/${routeList.slice(0, idx + 1).join('/')}`
+            return (
+                idx == arr.length - 1 ? <Breadcrumb.Item key={url}><span>{nameMap[url]}</span></Breadcrumb.Item> : <Breadcrumb.Item key={url}>
+                    <Link to={url}>
+                        {nameMap[url]}
+                    </Link>
+                </Breadcrumb.Item>
+            )
+        })
         return (
             <Title title="apple">
                 <Layout style={{ margin: 0 }}>
@@ -37,10 +42,15 @@ class AppleContainer extends React.Component {
                         <MenuList select="apple"></MenuList>
                     </Sider>
                     <Layout>
-                        <Breadcrumb itemRender={itemRender} routes={this.props.routes}></Breadcrumb>
-                        <Route path={`${this.props.match.url}/list`} component={AppleList}></Route>
-                        <Route path={`${this.props.match.url}/edit`} component={AppleEdit}></Route>
-                        <Route path={`${this.props.match.url}/detail`} component={AppleDetail}></Route>
+                        <Breadcrumb  >
+                            {breadList}
+                        </Breadcrumb>
+                        <Switch>
+                            <Redirect exact from={this.props.match.url} to={`${this.props.match.url}/list`}></Redirect>
+                            <Route path={`${this.props.match.url}/list`} component={AppleList}></Route>
+                            <Route path={`${this.props.match.url}/edit`} component={AppleEdit}></Route>
+                            <Route path={`${this.props.match.url}/detail`} component={AppleDetail}></Route>
+                        </Switch>
                     </Layout>
 
                 </Layout>
