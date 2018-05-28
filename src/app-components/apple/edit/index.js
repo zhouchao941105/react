@@ -1,6 +1,7 @@
 import React from 'react'
-import { Modal, Button } from 'antd'
+import { Modal, Button, Input } from 'antd'
 import { Link, withRouter, Prompt, } from 'react-router-dom'
+import axios from 'axios'
 const confirm = Modal.confirm
 // function setAsyncRouteLeaveHook(router, route, hook) {
 //     let withinHook = false
@@ -27,6 +28,12 @@ const confirm = Modal.confirm
 // }
 class AppleEdit extends React.Component {
     // mixins: [Lifecycle],
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: props.name || ''
+        }
+    }
     componentDidMount() {
         // console.log(this);
         // setAsyncRouteLeaveHook(this.props.router, this.props.route, this.routerWillLeave)
@@ -61,6 +68,17 @@ class AppleEdit extends React.Component {
         })
 
     }
+    save() {
+        return axios.post('/create', {
+            name: this.state.name,
+            school: 'beijing'
+        })
+    }
+    change(event, d) {
+        this.setState({
+            name: event.target.value
+        })
+    }
     render() {
         return (
             <div>
@@ -68,6 +86,15 @@ class AppleEdit extends React.Component {
                     <Link to={`/apple/list`} >back to application apple</Link>
                 </Button>
                 <p><strong>Edit</strong> area for apple</p>
+                <div>
+                    <span>Name</span>
+                    <Input style={{ width: '200px' }} onChange={this.change.bind(this)} defaultValue={this.state.name} />
+                </div>
+                <div>
+                    <Button onClick={() => {
+                        this.save()
+                    }}>保存</Button>
+                </div>
             </div>)
     }
 }

@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser=require('body-parser')
 // var proxy = require('express-http-proxy');
 mongoose.connect('mongodb://localhost')
 var db = mongoose.connection;
@@ -44,6 +45,8 @@ app.all('*', function (req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.get('/get', function (req, res) {
     // switch (+req.url.split('?')[1].split('=')[1]) {
     //     case 0: res.send('hh0'); break;
@@ -56,7 +59,10 @@ app.get('/get', function (req, res) {
     })
 })
 app.post('/create', (req, res) => {
-    kitty.collection.insert([req], (err, docs) => {
+    kitty.collection.insert([req.body], (err, docs) => {
+        if (err) {
+            res.send(err)
+        }
         console.log(docs);
         res.send(true)
     })
