@@ -1,6 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var bodyParser=require('body-parser')
+var bodyParser = require('body-parser')
 // var proxy = require('express-http-proxy');
 mongoose.connect('mongodb://localhost')
 var db = mongoose.connection;
@@ -17,12 +17,12 @@ var kittySchema = mongoose.Schema({
 //     console.log(greet);
 // }
 var kitty = mongoose.model('Kitty', kittySchema);
-var arr = [{ name: 'zhouchao0', school: '北京校区' }, { name: 'zhouchao1', school: '北京校区' }, { name: 'zhouchao2', school: '北京校区' }]
-kitty.find(function (err, list) {
-    if (err) return console.log(err);
-    kitty.collection.insert(arr, (err, docs) => {
-    })
-})
+// var arr = [{ name: 'zhouchao0', school: '北京校区' }, { name: 'zhouchao1', school: '北京校区' }, { name: 'zhouchao2', school: '北京校区' }]
+// kitty.find(function (err, list) {
+//     if (err) return console.log(err);
+//     kitty.collection.insert(arr, (err, docs) => {
+//     })
+// })
 
 // var instance = new kitty({
 //     name: 'fuck',

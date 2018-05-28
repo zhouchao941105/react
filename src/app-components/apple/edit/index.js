@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Button, Input } from 'antd'
-import { Link, withRouter, Prompt, } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 const confirm = Modal.confirm
 // function setAsyncRouteLeaveHook(router, route, hook) {

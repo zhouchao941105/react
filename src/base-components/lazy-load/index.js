@@ -1,6 +1,5 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
-import { Divider } from 'antd';
 // //获取顶部超过视口的高度
 // function getScrollTop() {
 //     return document.body.scrollTop || document.documentElement.scrollTop;

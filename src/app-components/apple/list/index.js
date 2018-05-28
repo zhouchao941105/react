@@ -28,7 +28,7 @@ class AppleContainer extends React.Component {
         const breadList = routeList.map((item, idx, arr) => {
             let url = `/${routeList.slice(0, idx + 1).join('/')}`
             return (
-                idx == arr.length - 1 ? <Breadcrumb.Item key={url}><span>{nameMap[url]}</span></Breadcrumb.Item> : <Breadcrumb.Item key={url}>
+                idx === arr.length - 1 ? <Breadcrumb.Item key={url}><span>{nameMap[url]}</span></Breadcrumb.Item> : <Breadcrumb.Item key={url}>
                     <Link to={url}>
                         {nameMap[url]}
                     </Link>
@@ -65,18 +65,8 @@ function mapStateToProps(state = { searchVal: '', loading: false }) {
         loading: state.loading
     }
 }
-const hh = ['x', 'y', 'z']
-const sourceData = [{
-    name: 'haha',
-    school: 'bei'
-}, {
-    name: 'hwiii',
-    school: 'hoohoh'
-}]
+const hh = [{ name: 'all', key: '' }, { name: 'x', key: '0' }, { name: 'y', key: '1' }, { name: 'z', key: '2' }]
 const AppleList = connect(mapStateToProps)(class List extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     state = {
         list: []
     }

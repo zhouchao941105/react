@@ -8,9 +8,6 @@ function mapStateToProps(state = { current: 'home' }) {
     }
 }
 export default connect(mapStateToProps)(class MenuList extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     handleClick = e => {
         // this.refs.menu && this.setState({
         //     current: e.key

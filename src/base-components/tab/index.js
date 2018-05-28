@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Tabs, Spin, Tooltip } from 'antd'
-import axios from '../../net'
+import { Tabs } from 'antd'
 const TabPane = Tabs.TabPane;
 class TabList extends React.Component {
     constructor(props) {
@@ -33,7 +32,7 @@ class TabList extends React.Component {
                 <Tabs onChange={this.props.loadfun}>
                     {this.props.list.map((item, idx) => {
                         return (
-                            <TabPane tab={`tab${item}`} key={idx}></TabPane>
+                            <TabPane tab={`Tab${item.name}`} key={item.key}></TabPane>
                         )
                     })}
                 </Tabs>

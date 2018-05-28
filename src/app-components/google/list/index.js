@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Button, Input, Breadcrumb, Layout, Tooltip } from 'antd'
+import { Button, Breadcrumb, Layout, Tooltip } from 'antd'
 import { Link, Route } from 'react-router-dom'
 import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
@@ -10,7 +10,6 @@ import Title from '../../../base-components/document-title'
 import GoogleEdit from '../edit/index'
 import GoogleDetail from '../detail/index'
 
-const Search = Input.Search
 const { Sider } = Layout
 
 function itemRender(route, params, routes, paths) {
@@ -45,9 +44,6 @@ function mapStateToProps(state = { searchVal: '' }) {
 }
 const hh = ['d', 'e', 'f']
 const GoogleList = connect(mapStateToProps)(class List extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     // searchCallback = val => {
     //     this.props.dispatch({ type: 'SEARCH', key: val })
     // }

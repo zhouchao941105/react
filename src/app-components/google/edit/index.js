@@ -2,29 +2,7 @@ import React from 'react'
 import { Modal, Button } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
 const confirm = Modal.confirm
-function setAsyncRouteLeaveHook(router, route, hook) {
-    let withinHook = false
-    let finalResult = undefined
-    let finalResultSet = false
-    router.setRouteLeaveHook(route, nextLocation => {
-        withinHook = true
-        if (!finalResultSet) {
-            hook(nextLocation).then(result => {
-                finalResult = result
-                finalResultSet = true
-                if (!withinHook && nextLocation) {
-                    // Re-schedule the navigation
-                    router.push(nextLocation)
-                }
-            })
-        }
-        let result = finalResultSet ? finalResult : false
-        withinHook = false
-        finalResult = undefined
-        finalResultSet = false
-        return result
-    })
-}
+
 const GoogleEdit = withRouter(class extends React.Component {
     // mixins: [Lifecycle],
     componentDidMount() {
