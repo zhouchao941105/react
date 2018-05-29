@@ -70,13 +70,18 @@ class AppleEdit extends React.Component {
     }
     save() {
         return axios.post('/create', {
-            name: this.state.name,
-            school: 'beijing'
+            name: this.state.name || 'zhouchao',
+            school: this.state.school || 'beijing'
         })
     }
     change(event, d) {
         this.setState({
             name: event.target.value
+        })
+    }
+    changeSchool(event) {
+        this.setState({
+            school: event.target.value
         })
     }
     render() {
@@ -89,6 +94,10 @@ class AppleEdit extends React.Component {
                 <div>
                     <span>Name</span>
                     <Input style={{ width: '200px' }} onChange={this.change.bind(this)} defaultValue={this.state.name} />
+                </div>
+                <div>
+                    <span>School</span>
+                    <Input style={{ width: '200px' }} onChange={this.changeSchool.bind(this)} defaultValue={this.state.school} />
                 </div>
                 <div>
                     <Button onClick={() => {
