@@ -72,6 +72,8 @@ class AppleEdit extends React.Component {
         return axios.post('/create', {
             name: this.state.name || 'zhouchao',
             school: this.state.school || 'beijing'
+        }).then(() => {
+            window.location.href = '/apple/list'
         })
     }
     change(event, d) {
