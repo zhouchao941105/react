@@ -67,6 +67,15 @@ app.post('/create', (req, res) => {
         res.send(true)
     })
 })
+app.get('/delete', function (req, res) {
+    kitty.remove({ id: req.query.id }, err => {
+        if (err) {
+            res.send('error')
+        } else {
+            res.send(true)
+        }
+    })
+})
 app.listen(port, host, function (req, res) {
     console.log(`running at ${port}`);
 })
