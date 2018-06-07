@@ -25,10 +25,10 @@ var kitty = mongoose.model('Kitty', kittySchema);
 // })
 
 // var instance = new kitty({
-//     name: 'fuck',
+//     name: 'zhouchao',
 //     school: '北京校区'
 // })
-// instance.speak();
+// // instance.speak();
 // instance.save(function (err, ins) {
 //     if (err) return console.log(err);
 //     // ins.speak();
