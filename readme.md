@@ -18,3 +18,4 @@
 
 ## 笔记
 1. npm社区倾向于将npm包做的更加轻量。比如讲最早的react拆成了react和react-dom两个库。在路由方面，讲路由相关的核心内容放在react-router中，web开发使用react-router-dom,这个包依赖react-router，同时提供web开发一些常用组件，例如Link等。对于react native来说就可以引入react-router-native。
+## 双语项目
