@@ -1,5 +1,6 @@
 import { createStore } from 'redux'
 function reducer(state, action) {
+    //可以用combineReducers优化
     switch (action.type) {
         case 'LOADING':
             return {
