@@ -23,6 +23,32 @@ const nameMap = {
     '/apple/detail': 'detail'
 }
 class AppleContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            list:[
+                {
+                    id:0,
+                    name:'haha'
+                },
+                {
+                    id:1,
+                    name:'hahzzzza'
+                },
+                {
+                    id:2,
+                    name:'hasdfha'
+                },
+            ]
+        }
+    }
+    change(idx,e){
+        let temp=this.state.list
+        temp[idx].name=e.target.value
+        this.setState({
+            list:temp
+        })
+    }
     render() {
         const routeList = this.props.location.pathname.split('/').filter(i => i)
         const breadList = routeList.map((item, idx, arr) => {
@@ -45,6 +71,9 @@ class AppleContainer extends React.Component {
                         <Breadcrumb  >
                             {breadList}
                         </Breadcrumb>
+{this.state.list.map((item,idx)=>{
+    return (<div key={item.name}><input value={item.name} onChange={this.change.bind(this,idx)}/>  <p>{item.name}</p></div>)
+})}
                         <Switch>
                             <Redirect exact from={this.props.match.url} to={`${this.props.match.url}/list`}></Redirect>
                             <Route path={`${this.props.match.url}/list`} component={AppleList}></Route>
