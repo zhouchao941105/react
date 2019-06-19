@@ -6,7 +6,7 @@ import TabList from '../../../base-components/tab'
 import MenuList from '../../../base-components/menu-list'
 import axios from '../../../net'
 import Title from '../../../base-components/document-title'
-
+import Test from './test'
 import AppleEdit from '../edit/index'
 import AppleDetail from "../detail/index";
 
@@ -23,30 +23,35 @@ const nameMap = {
     '/apple/detail': 'detail'
 }
 class AppleContainer extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            list:[
+        this.state = {
+            list: [
                 {
-                    id:0,
-                    name:'haha'
+                    id: 0,
+                    name: 'haha'
                 },
                 {
-                    id:1,
-                    name:'hahzzzza'
+                    id: 1,
+                    name: 'hahzzzza'
                 },
                 {
-                    id:2,
-                    name:'hasdfha'
+                    id: 2,
+                    name: 'hasdfha'
                 },
             ]
         }
     }
-    change(idx,e){
-        let temp=this.state.list
-        temp[idx].name=e.target.value
+    change(idx, e) {
+        let temp = this.state.list
+        temp[idx].name = e.target.value
         this.setState({
-            list:temp
+            list: temp
+        })
+    }
+    delete = (index) => {
+        this.setState({
+            list: this.state.list.filter((item, idx) => idx !== index)
         })
     }
     render() {
@@ -71,9 +76,13 @@ class AppleContainer extends React.Component {
                         <Breadcrumb  >
                             {breadList}
                         </Breadcrumb>
-{this.state.list.map((item,idx)=>{
-    return (<div key={item.name}><input value={item.name} onChange={this.change.bind(this,idx)}/>  <p>{item.name}</p></div>)
-})}
+                        {this.state.list.map((item, idx) => {
+                            return (<div key={idx}><input value={item.name} onChange={this.change.bind(this, idx)} /> <p>{item.name}</p><Button onClick={this.delete.bind(this, idx)}>delete</Button></div>)
+                        })}
+                        {this.state.list.map((item,idx)=>{
+                            return <Test name={item.name} key={idx}/>
+                        })}
+
                         <Switch>
                             <Redirect exact from={this.props.match.url} to={`${this.props.match.url}/list`}></Redirect>
                             <Route path={`${this.props.match.url}/list`} component={AppleList}></Route>
